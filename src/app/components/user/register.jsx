@@ -12,7 +12,7 @@ class UserRegister extends Component {
         this.state = {
             message: ''
         }
-        console.log("dfdfdf");
+
     }
 
     onFormSubmit(event) {
