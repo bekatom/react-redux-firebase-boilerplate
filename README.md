@@ -1,1 +1,1 @@
-# Starter kit for Firebase and react.js
+# React.js, Redux Firebase Boilerplate
