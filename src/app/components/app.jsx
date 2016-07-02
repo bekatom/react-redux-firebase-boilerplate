@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
-import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 import { fetchUser,logoutUser }  from '../actions/firebase_actions';
