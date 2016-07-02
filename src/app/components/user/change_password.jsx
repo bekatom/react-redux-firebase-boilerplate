@@ -20,7 +20,6 @@ class ChangePassword extends Component{
     var password = this.refs.password.value;
     var repeatPassword = this.refs.repeatPassword.value;
     if (password !== repeatPassword){
-      console.log("ar emtxveva");
       this.setState({
         message:"Please password must match!",
       })

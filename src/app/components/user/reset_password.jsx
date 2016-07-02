@@ -23,8 +23,7 @@ class ResetPassword extends Component {
             else
                 this.setState({message: "Please see your email!"})
 
-            console.log("reset Passwrod data : ", data);
-
+            
         });
 
     }
