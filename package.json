@@ -1,9 +1,9 @@
 {
   "name": "react-redux-firebase-boilerplate",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Simple boilerplate for Reactjs with Redux and Firebase",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "git@github.com:btomashvili/react-redux-firebase-boilerplate.git",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack-dev.config.js --watch --colors",
     "build": "rm -rf dist && webpack --config ./webpack/webpack-prod.config.js --colors",
