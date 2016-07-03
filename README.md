@@ -56,4 +56,4 @@ Commands
 |`npm start`| Start production ready app with pm2 from `./dist` @ `localhost:8080`|
 
 
-![screen](https://dl.dropboxusercontent.com/content_link/WH3JGMUchuaRXCl7L8BsMsDrL221vMYmODRk5LYSt6WS0R9cMVvRT73wxLqYWIwf/file "react_redux_firebase_boilerplate")
+![screen](https://www.dropbox.com/s/csufxlitjme8p3q/react_redux_firebase.gif?raw=1 "react_redux_firebase_boilerplate")
