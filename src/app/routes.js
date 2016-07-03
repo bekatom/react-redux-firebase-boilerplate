@@ -10,9 +10,6 @@ import UserProfile from './components/user/profile';
 import ResetPassword from './components/user/reset_password';
 import requireAuth from './utils/authenticated';
 
-const Greeting = () =>{
-  return <div> Hey there ! </div>
-}
 
 export default (
   <Route path="/"  component={App}>
