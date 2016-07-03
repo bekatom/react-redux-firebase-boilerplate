@@ -17,3 +17,22 @@ Boilerplate is designed for quickly spin up your apps with Firebase, using bunch
 * [redux-promise](https://github.com/acdlite/redux-promise)
 * [webpack](https://github.com/webpack/webpack)
 * [babel](https://github.com/babel/babel)
+
+Quick Start
+-----------
+
+```shell
+$ git clone https://github.com/btomashvili/react-redux-firebase-boilerplate.git
+$ cd react-redux-firebase-boilerplate
+$ npm install
+$ npm run dev
+```
+
+Commands
+--------
+
+|Script|Description|
+|---|---|
+|`npm run build`| Test, and build the application to `./dist`|
+|`npm run dev`| Run development server with webpack-dev-server @ `localhost:3000`|
+|`npm start`| Start production ready app with pm2 from `./dist` @ `localhost:8080`|
