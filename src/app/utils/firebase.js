@@ -6,6 +6,10 @@ import {
     fetchUserObject
 } from './localstorage';
 
+// You can remove it 
+if (FIREBASE_CONFIG.apiKey.length < 1){
+  alert("Please fill your Firebase settings to config.js ");
+}
 
 firebase.initializeApp(FIREBASE_CONFIG);
 

@@ -1,4 +1,4 @@
-# React.js, Redux Firebase Boilerplate
+# React, Redux Firebase Boilerplate
 
 > [Firebase](https://www.firebase.com) is a powerful platform for your mobile and web applications that lets you build apps fast without managing servers. Firebase gives you the tools and infrastructure to build better apps and grow successful businesses.
 
@@ -28,11 +28,15 @@ $ npm install
 $ npm run dev
 ```
 
+Firebase settings
+--------
+First you need to create your firebase application to fetch settings for boilerplate. For more information how to add your web app check this [resource](https://firebase.google.com/docs/web/setup) 
+
 Commands
 --------
 
 |Script|Description|
 |---|---|
-|`npm run build`| Test, and build the application to `./dist`|
 |`npm run dev`| Run development server with webpack-dev-server @ `localhost:3000`|
+|`npm run build`| Test, and build the application to `./dist`|
 |`npm start`| Start production ready app with pm2 from `./dist` @ `localhost:8080`|
