@@ -30,7 +30,21 @@ $ npm run dev
 
 Firebase settings
 --------
-First you need to create your firebase application to fetch settings for boilerplate. For more information how to add your web app check this [resource](https://firebase.google.com/docs/web/setup) 
+First you need to create your firebase application to fetch settings for boilerplate. For more information how to add your web app check this [resource](https://firebase.google.com/docs/web/setup). After it copy your settings from firebase and fill config.js
+
+```javascript
+module.exports = {
+
+    FIREBASE_CONFIG: {
+
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      storageBucket: "",
+
+    }
+}
+```
 
 Commands
 --------
