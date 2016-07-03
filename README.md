@@ -54,3 +54,6 @@ Commands
 |`npm run dev`| Run development server with webpack-dev-server @ `localhost:3000`|
 |`npm run build`| Test, and build the application to `./dist`|
 |`npm start`| Start production ready app with pm2 from `./dist` @ `localhost:8080`|
+
+
+![screen](https://dl.dropboxusercontent.com/content_link/WH3JGMUchuaRXCl7L8BsMsDrL221vMYmODRk5LYSt6WS0R9cMVvRT73wxLqYWIwf/file "react_redux_firebase_boilerplate")
