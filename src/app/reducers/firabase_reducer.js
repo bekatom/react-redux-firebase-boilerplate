@@ -14,6 +14,8 @@ export default function(state = null, action) {
               return action.payload;
         case 'FIREBASE_PASSWORD_RESET_EMAIL':
               return action.payload;
+        case 'LOGIN_WITH_PROVIDER_FIREBASE':
+              return action.payload;
 
     }
     return state;

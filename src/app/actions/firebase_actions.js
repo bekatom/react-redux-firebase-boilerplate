@@ -1,5 +1,14 @@
 import FireBaseTools from '../utils/firebase';
 
+export function loginWithProvider(provider){
+  console.log("shemovida : ", provider);
+  const request = FireBaseTools.loginWithProvider(provider);
+  return {
+    type : 'LOGIN_WITH_PROVIDER_FIREBASE',
+    payload : request
+  }
+}
+
 ///// EXPORTED ACTIONS
 export function registerUser(user) {
 
