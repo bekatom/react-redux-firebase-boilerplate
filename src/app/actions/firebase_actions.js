@@ -1,10 +1,20 @@
 import FireBaseTools from '../utils/firebase';
+import {
+  LOGIN_WITH_PROVIDER_FIREBASE,
+  REGISTER_FIRABASE_USER,
+  LOGIN_FIREBASE_USER,
+  FETCH_FIREBASE_USER,
+  UPDATE_FIREBASE_USER,
+  CHANGE_FIREBASE_USER_PASSWORD,
+  FIREBASE_PASSWORD_RESET_EMAIL,
+  LOGOUT_FIRABSE_USER
+} from './types';
+
 
 export function loginWithProvider(provider){
-  console.log("shemovida : ", provider);
   const request = FireBaseTools.loginWithProvider(provider);
   return {
-    type : 'LOGIN_WITH_PROVIDER_FIREBASE',
+    type : LOGIN_WITH_PROVIDER_FIREBASE,
     payload : request
   }
 }
@@ -14,7 +24,7 @@ export function registerUser(user) {
 
     const request = FireBaseTools.registerUser(user);
     return {
-        type: 'REGISTER_FIRABASE_USER',
+        type: REGISTER_FIRABASE_USER,
         payload: request
     }
 }
@@ -22,7 +32,7 @@ export function registerUser(user) {
 export function loginUser(user) {
     const request = FireBaseTools.loginUser(user);
     return {
-        type: 'LOGIN_FIREBASE_USER',
+        type: LOGIN_FIREBASE_USER,
         payload: request
     }
 }
@@ -32,7 +42,7 @@ export function fetchUser() {
 
     const request = FireBaseTools.fetchUser();
     return {
-        type: 'FETCH_FIREBASE_USER',
+        type: FETCH_FIREBASE_USER,
         payload: request
     };
 
@@ -41,7 +51,7 @@ export function fetchUser() {
 export function updateUser(user) {
     const request = FireBaseTools.updateUser(user);
     return {
-        type: 'UPDATE_FIREBASE_USER',
+        type: UPDATE_FIREBASE_USER,
         payload: request
     }
 }
@@ -49,7 +59,7 @@ export function updateUser(user) {
 export function changePassword(newPassword) {
     const request = FireBaseTools.changePassword(newPassword);
     return {
-        type: 'CHANGE_FIREBASE_USER_PASSWORD',
+        type: CHANGE_FIREBASE_USER_PASSWORD,
         payload: request
     }
 }
@@ -57,7 +67,7 @@ export function changePassword(newPassword) {
 export function resetPasswordEmail(email){
   const request = FireBaseTools.resetPasswordEmail(email);
   return {
-    type : 'FIREBASE_PASSWORD_RESET_EMAIL',
+    type : FIREBASE_PASSWORD_RESET_EMAIL,
     payload : request
   }
 }
@@ -65,7 +75,7 @@ export function resetPasswordEmail(email){
 export function logoutUser(user) {
     const request = FireBaseTools.logoutUser(user);
     return {
-        type: 'LOGOUT_FIRABSE_USER',
+        type: LOGOUT_FIRABSE_USER,
         payload: request
     }
 

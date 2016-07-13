@@ -2,10 +2,10 @@ module.exports = {
 
     FIREBASE_CONFIG: {
 
-      apiKey: "",
-      authDomain: "",
-      databaseURL: "",
-      storageBucket: "",
+        apiKey: "",
+        authDomain: "",
+        databaseURL: "",
+        storageBucket: ""
 
     }
-}
+};
