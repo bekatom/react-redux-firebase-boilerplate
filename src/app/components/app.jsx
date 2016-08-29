@@ -25,7 +25,7 @@ class App extends Component {
 
   renderUserMenu(currentUser){
     // if current user exists and user id exists than make user navigation
-    if(currentUser && currentUser.uid)
+    if(currentUser && currentUser.uid) {
       return (
           <li className="dropdown">
             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -38,38 +38,29 @@ class App extends Component {
               </ul>
           </li>
       )
-    else
-      return[
-         <li key={1}> <Link to="/login">Login</Link></li>,
-         <li key={2}> <Link to="/register">Register</Link></li>
-      ]
-
+    } else {
+      return <li key={1}> <Link to="/login">Login</Link></li>
+      // Register users as admin
+      // return[
+      //    <li key={1}> <Link to="/login">Login</Link></li>,
+      //    <li key={2}> <Link to="/register">Register</Link></li>
+      // ]
+    }
   }
   render() {
     return (
       <div>
-      <header className="navbar navbar-static-top navbar-inverse" id="top" role="banner">
-        <div className="container">
-            <div className="navbar-header">
-                <button className="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"> <span className="sr-only">Toggle navigation</span>
-                 <span className="icon-bar"></span>
-                 <span className="icon-bar"></span>
-                 <span className="icon-bar"></span>
-               </button> <Link to="/" className="navbar-brand">Firebase & Redux boilerplate</Link>
-
-            </div>
-            <nav className="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-              <ul className="nav navbar-nav">
-                  <li> <Link to="/"> Home</Link></li>,
+        <header className="" id="top" role="banner">
+          <nav className="" role="navigation">
+            <ul className="">
+                <li> <Link to="/"> Home</Link></li>
+            </ul>
+              <ul className="">
+                {this.renderUserMenu(this.props.currentUser)}
               </ul>
-                <ul className="nav navbar-nav navbar-right">
-                  {this.renderUserMenu(this.props.currentUser)}
-                </ul>
-            </nav>
-        </div>
-      </header>
-
-        <div className="container">
+          </nav>
+        </header>
+        <div className="">
             {this.props.children}
         </div>
     </div>
