@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --config ./webpack/webpack-dev.config.js --watch --colors",
     "build": "rm -rf dist && webpack --config ./webpack/webpack-prod.config.js --colors",
     "start": "PORT=8080 pm2 start ./www.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "./node_modules/.bin/eslint src && mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "lint": "./node_modules/.bin/eslint src"
   },
