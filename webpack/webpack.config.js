@@ -9,7 +9,7 @@ module.exports = (options) => {
   const webpackConfig = {
     devtool: options.devtool,
     entry: [
-      `webpack-dev-server/client?http://localhost:${+ options.port}`,
+      `webpack-dev-server/client?http://localhost:${+options.port}`,
       'webpack/hot/dev-server',
       Path.join(__dirname, '../src/app/index'),
     ],
@@ -22,13 +22,13 @@ module.exports = (options) => {
     },
     module: {
       loaders: [
-        {test: /.jsx?$/,include: Path.join(__dirname, '../src/app'),loader: 'babel',},
-        {test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel' },
-			  {test: /\.css$/, loader: 'style-loader!css-loader' },
-			  {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-			  {test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
-			  {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-			  {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
+        {test: /.jsx?$/, include: Path.join(__dirname, '../src/app'), loader: 'babel',},
+        {test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel'},
+        {test: /\.css$/, loader: 'style-loader!css-loader'},
+        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
+        {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
+        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
+        {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
       ],
     },
     plugins: [

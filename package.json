@@ -9,16 +9,25 @@
     "build": "rm -rf dist && webpack --config ./webpack/webpack-prod.config.js --colors",
     "start": "PORT=8080 pm2 start ./www.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "lint": "./node_modules/.bin/eslint src"
   },
   "author": "Beka Tomashvili",
+  "contributors": [
+    {
+      "name": "Alexander Wong",
+      "email": "admin@alexander-wong.com",
+      "url": "https://www.alexander-wong.com/"
+    }
+  ],
   "license": "MIT",
   "keywords": [
     "ReactJS",
     "Redux",
     "Firebase",
     "React hot loader",
-    "React Router"
+    "React Router",
+    "ESLint"
   ],
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -29,6 +38,11 @@
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "css-loader": "^0.23.1",
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.21.0",
@@ -42,12 +56,12 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0",
-    "babel-preset-stage-1": "^6.1.18"
+    "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "express": "^4.14.0",
     "firebase": "^3.0.5",
+    "jquery": "^3.1.0",
     "lodash": "^3.10.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.3",
