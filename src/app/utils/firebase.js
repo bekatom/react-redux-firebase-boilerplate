@@ -4,7 +4,6 @@ import {FIREBASE_CONFIG} from '../config';
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
 export const firebaseDb = firebaseApp.database();
-export const firebaseStorage = firebaseApp.storage();
 
 var FireBaseTools = {
 
@@ -41,7 +40,6 @@ var FireBaseTools = {
     return firebaseAuth.signInWithPopup(provider).then(function (result) {
       return firebaseAuth.currentUser;
     }).catch(function (error) {
-      console.error(error);
       return {
         errorCode: error.code,
         errorMessage: error.message
