@@ -1,53 +1,47 @@
 import firebase from 'firebase';
 import {FIREBASE_CONFIG} from '../config';
-import {
-  currentUserPromise,
-  fetchUserObject
-} from './localstorage';
-
-// You can remove it
-if (FIREBASE_CONFIG.apiKey.length < 1) {
-  alert("Please fill your Firebase settings to config.js ");
-}
 
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
 export const firebaseDb = firebaseApp.database();
+export const firebaseStorage = firebaseApp.storage();
 
-// FIREBASE TOOL OBJECT LITERAL
 var FireBaseTools = {
 
+  /**
+   * Return an instance of a firebase auth provider based on the provider string.
+   *
+   * @param provider
+   * @returns {firebase.auth.AuthProvider}
+   */
   getProvider: (provider) => {
     switch (provider) {
+      case "email":
+        return new firebase.auth.EmailAuthProvider();
       case "facebook":
         return new firebase.auth.FacebookAuthProvider();
+      case "github":
+        return new firebase.auth.GithubAuthProvider();
       case "google":
         return new firebase.auth.GoogleAuthProvider();
+      case "twitter":
+        return new firebase.auth.TwitterAuthProvider();
       default:
     }
   },
 
   /**
-   * Login with provider => p is provider "facebook" or "google"
+   * Login with provider => p is provider "email", "facebook", "github", "google", or "twitter"
+   * Uses Popup therefore provider must be an OAuth provider. EmailAuthProvider will throw an error
    *
-   * @param p
+   * @returns {any|!firebase.Thenable.<*>|firebase.Thenable<any>}
    */
   loginWithProvider: (p) => {
-    var provider = FireBaseTools.getProvider(p);
+    let provider = FireBaseTools.getProvider(p);
     return firebaseAuth.signInWithPopup(provider).then(function (result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // save user to localstorage
-      return fetchUserObject(user).then(user => {
-        return user;
-      })
+      return firebaseAuth.currentUser;
     }).catch(function (error) {
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+      console.error(error);
       return {
         errorCode: error.code,
         errorMessage: error.message
@@ -55,11 +49,15 @@ var FireBaseTools = {
     });
   },
 
+  /**
+   * Register a user with email and password
+   *
+   * @param user
+   * @returns {any|!firebase.Thenable.<*>|firebase.Thenable<any>}
+   */
   registerUser: (user) => {
     return firebaseAuth.createUserWithEmailAndPassword(user.email, user.password).then(user => {
-      return fetchUserObject(user).then(user => {
-        return user;
-      })
+      return user;
     }).catch(error => {
       return {
         errorCode: error.code,
@@ -68,10 +66,13 @@ var FireBaseTools = {
     });
   },
 
-  logoutUser: (user) => {
-    return firebaseAuth.signOut().then(function () {
-      // Sign-out successful and clear data.
-      localStorage.clear();
+  /**
+   * Sign the user out
+   *
+   * @returns {!firebase.Promise.<*>|firebase.Thenable<any>|firebase.Promise<any>|!firebase.Thenable.<*>}
+   */
+  logoutUser: () => {
+    return firebaseAuth.signOut().then(() => {
       return {
         success: 1,
         message: "logout"
@@ -79,32 +80,30 @@ var FireBaseTools = {
     });
   },
 
+  /**
+   * Retrieve the current user (Promise)
+   * @returns {Promise}
+   */
   fetchUser: () => {
     return new Promise((resolve, reject) => {
-      currentUserPromise().then(user => {
-        if (user) {
-          resolve(user)
-        }
-      });
-      firebaseAuth.onAuthStateChanged(user => {
-        //resolve(firebase.auth().currentUser);
-        if (user) {
-          fetchUserObject(firebase.auth().currentUser).then(user => {
-            resolve(user);
-          })
-        } else {
-          resolve(null)
-        }
-      });
-    });
+      const unsub = firebaseAuth.onAuthStateChanged(user => {
+        unsub();
+        resolve(user);
+      }, error => {
+        reject(error);
+      })
+    })
   },
 
+  /**
+   * Log the user in using email and password
+   *
+   * @param user
+   * @returns {any|!firebase.Thenable.<*>|firebase.Thenable<any>}
+   */
   loginUser: (user) => {
     return firebaseAuth.signInWithEmailAndPassword(user.email, user.password).then(user => {
-      // save user to localstorage
-      return fetchUserObject(user).then(user => {
-        return user;
-      })
+      return user;
     }).catch(error => {
       return {
         errorCode: error.code,
@@ -113,36 +112,35 @@ var FireBaseTools = {
     });
   },
 
-  updateUser: (u) => {
-    if (firebaseAuth.currentUser) {
-      var user = firebaseAuth.currentUser;
-      return user.updateProfile({
-        displayName: u.displayName,
-        photoUrl: '' // field for photo url
-      }).then(data => {
-        // renew user
-        return fetchUserObject(firebase.auth().currentUser).then(user => {
-          return user;
-        })
-      }, error => {
-        return {
-          errorCode: error.code,
-          errorMessage: error.message
-        }
-      })
-    } else {
-      return null;
-    }
+  /**
+   * Update a user's profile data
+   *
+   * @param u
+   * @returns {!firebase.Promise.<*>|firebase.Thenable<any>|firebase.Promise<any>|!firebase.Thenable.<*>}
+   */
+  updateUserProfile: (u) => {
+    return firebaseAuth.currentUser.updateProfile(u).then(() => {
+      return firebaseAuth.currentUser;
+    }, error => {
+      return {
+        errorCode: error.code,
+        errorMessage: error.message
+      }
+    })
   },
 
+  /**
+   * Reset the password given the specified email
+   *
+   * @param email {string}
+   * @returns {!firebase.Promise.<*>|firebase.Thenable<any>|firebase.Promise<any>|!firebase.Thenable.<*>}
+   */
   resetPasswordEmail: (email) => {
-    return firebaseAuth.sendPasswordResetEmail(email).then((data) => {
+    return firebaseAuth.sendPasswordResetEmail(email).then(() => {
       return {
-        message: 'Email sent',
-        errorCode: null
+        message: 'Email sent'
       }
     }, error => {
-      // An error happened.
       return {
         errorCode: error.code,
         errorMessage: error.message
@@ -150,17 +148,49 @@ var FireBaseTools = {
     });
   },
 
+  /**
+   * Update the user's password with the given password
+   *
+   * @param newPassword {string}
+   * @returns {!firebase.Promise.<*>|firebase.Thenable<any>|firebase.Promise<any>|!firebase.Thenable.<*>}
+   */
   changePassword: (newPassword) => {
     return firebaseAuth.currentUser.updatePassword(newPassword).then(user => {
-      return fetchUserObject(user).then(user => {
-        return user;
-      })
+      return user;
     }, error => {
       return {
         errorCode: error.code,
         errorMessage: error.message
       }
     });
+  },
+
+  /**
+   * Send an account email verification message for the currently logged in user
+   *
+   * @returns {!firebase.Promise.<*>|firebase.Thenable<any>|firebase.Promise<any>|!firebase.Thenable.<*>}
+   */
+  sendEmailVerification: () => {
+    return firebaseAuth.currentUser.sendEmailVerification().then(() => {
+      return {
+        message: 'Email sent'
+      }
+    }, error => {
+      return {
+        errorCode: error.code,
+        errorMessage: error.message
+      }
+    });
+  },
+
+  /**
+   * Get the firebase database reference.
+   *
+   * @param path {!string|string}
+   * @returns {!firebase.database.Reference|firebase.database.Reference}
+   */
+  getDatabaseReference: (path) => {
+    return firebaseDb.ref(path);
   }
 };
 

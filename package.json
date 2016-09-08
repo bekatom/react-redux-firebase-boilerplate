@@ -47,6 +47,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.21.0",
     "imports-loader": "^0.6.5",
+    "jquery": "^3.1.0",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.8.0",
@@ -61,7 +62,6 @@
   "dependencies": {
     "express": "^4.14.0",
     "firebase": "^3.0.5",
-    "jquery": "^3.1.0",
     "lodash": "^3.10.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.3",

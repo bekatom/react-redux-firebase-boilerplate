@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchUser, logoutUser}  from '../actions/firebase_actions';
-import {currentUser} from '../utils/localstorage';
 
 class App extends Component {
 
@@ -15,12 +14,10 @@ class App extends Component {
   }
 
   logOut() {
-
     this.props.logoutUser().then(data=> {
       // reload props from reducer
       this.props.fetchUser();
     });
-
   }
 
   renderUserMenu(currentUser) {
@@ -87,6 +84,7 @@ function mapDispatchToProps(dispatch) {
 
 
 function mapStateToProps(state) {
+  console.log(state);
   return {currentUser: state.currentUser};
 }
 
