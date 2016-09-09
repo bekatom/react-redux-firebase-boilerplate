@@ -1,55 +1,55 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { changePassword} from '../../actions/firebase_actions';
+import {changePassword} from '../../actions/firebase_actions';
 
-class ChangePassword extends Component{
+class ChangePassword extends Component {
 
-  constructor(props){
+  constructor(props) {
 
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.state = {
-      message : ''
+      message: ''
     }
 
   }
 
-  onFormSubmit(event){
+  onFormSubmit(event) {
     event.preventDefault();
     var password = this.refs.password.value;
     var repeatPassword = this.refs.repeatPassword.value;
-    if (password !== repeatPassword){
+    if (password !== repeatPassword) {
       this.setState({
-        message:"Please password must match!",
+        message: "Please password must match!",
       })
-    }else{
-      this.props.changePassword(password).then(data=>{
-        if(data.payload.errorCode)
-          this.setState({message:data.payload.errorMessage})
+    } else {
+      this.props.changePassword(password).then(data=> {
+        if (data.payload.errorCode)
+          this.setState({message: data.payload.errorMessage})
         else
-            this.setState({message:"Password was changed!"})
+          this.setState({message: "Password was changed!"})
       })
     }
   }
 
-  render(){
+  render() {
     return (
       <form id="ChangePassword" role="form" onSubmit={this.onFormSubmit}>
-      <h4> Change Password </h4>
-      <h5> {this.state.message} </h5>
+        <h4> Change Password </h4>
+        <h5> {this.state.message} </h5>
         <div className="form-group">
-          <label htmlFor="password">  New Password: </label>
+          <label htmlFor="password"> New Password: </label>
           <input type="password" className="form-control"
-          name="password" ref="password" id="password"/>
+                 name="password" ref="password" id="password"/>
         </div>
         <div className="form-group">
-          <label htmlFor="repeatPassword">  Repeat Password: </label>
+          <label htmlFor="repeatPassword"> Repeat Password: </label>
           <input type="password" className="form-control"
-          name="repeatPassword" ref="repeatPassword"  id="repeatPassword" />
+                 name="repeatPassword" ref="repeatPassword" id="repeatPassword"/>
 
         </div>
-          <button type="submit" className="btn btn-primary">Change Password</button>
+        <button type="submit" className="btn btn-primary">Change Password</button>
       </form>
     )
   }
@@ -58,11 +58,11 @@ class ChangePassword extends Component{
 
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({changePassword}, dispatch);
+  return bindActionCreators({changePassword}, dispatch);
 }
 
 function mapStateToProps(state) {
-    return {currentUser: state.currentUser};
+  return {currentUser: state.currentUser};
 
 }
 
