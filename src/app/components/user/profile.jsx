@@ -21,7 +21,7 @@ class UserProfile extends Component {
     event.preventDefault();
     var email = this.refs.email.value;
     var displayName = this.refs.displayName.value;
-    this.props.updateUserProfile({email: email, displayName: displayName}).then(data => {
+    this.props.updateUser({email: email, displayName: displayName}).then(data => {
 
         if (data.payload.errorCode)
           this.setState({message: data.payload.errorMessage})
