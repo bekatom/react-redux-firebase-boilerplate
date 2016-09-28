@@ -1,6 +1,18 @@
 {
   "rules": {
     ".read": false,
-    ".write": false
+    ".write": false,
+    "words": {
+      ".read": true,
+      ".write": true
+    },
+    "dev": {
+      ".read": true,
+      ".write": true
+    },
+    "staging": {
+      ".read": true,
+      ".write": true
+    }
   }
 }
