@@ -6,7 +6,7 @@ import {Router, browserHistory} from 'react-router';
 import ReduxPromise from 'redux-promise';
 
 import reducers from './reducers';
-import routes from './routes'
+import routes from './routes';
 
 // for bundling your styles
 import './bundle.scss';
