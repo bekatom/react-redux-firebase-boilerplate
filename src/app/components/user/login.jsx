@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {loginUser, fetchUser, loginWithProvider} from '../../actions/firebase_actions';
+import React, { Component } from 'react'
+import { browserHistory, Link} from 'react-router';
+import { connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loginUser, fetchUser, loginWithProvider } from '../../actions/firebase_actions';
 
 
 class UserLogin extends Component {
@@ -73,6 +73,11 @@ class UserLogin extends Component {
           <a href="#" className="btn btn-primary bt-social" onClick={()=> {
             this.loginWithProvider("facebook")
           }} data-provider="facebook">Facebook</a>
+
+          <a href="#" className="btn btn-primary bt-social" onClick={()=> {
+            this.loginWithProvider("twitter")
+          }} data-provider="twitter">Twitter</a>
+
           {/*
            <a href="#" className="btn btn-info bt-social" data-provider="twitter">Twitter</a>
 
