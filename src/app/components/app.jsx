@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {fetchUser, logoutUser}  from '../actions/firebase_actions';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchUser, logoutUser }  from '../actions/firebase_actions';
 
 class App extends Component {
 
@@ -64,7 +64,7 @@ class App extends Component {
                 ,
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                {this.renderUserMenu(this.props.currentUser)}
+                { this.renderUserMenu(this.props.currentUser) }
               </ul>
             </nav>
           </div>

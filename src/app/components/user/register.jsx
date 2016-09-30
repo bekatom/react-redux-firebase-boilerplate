@@ -1,39 +1,34 @@
-import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {registerUser} from '../../actions/firebase_actions';
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { registerUser } from '../../actions/firebase_actions';
 
 class UserRegister extends Component {
-
-  constructor(props) {
-    super(props);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.state = {
-      message: ''
-    }
-
+    constructor(props) {
+      super(props);
+      this.onFormSubmit = this.onFormSubmit.bind(this);
+      this.state = {
+          message: '',
+      };
   }
 
-  onFormSubmit(event) {
-    event.preventDefault();
+    onFormSubmit(event) {
+      event.preventDefault();
 
-    var email = this.refs.email.value;
-    var password = this.refs.password.value;
-    this.props.registerUser({email: email, password: password}).then(data => {
-
-        if (data.payload.errorCode)
-          this.setState({message: data.payload.errorMessage});
-        else
+      const email = this.refs.email.value;
+      const password = this.refs.password.value;
+      this.props.registerUser({ email, password }).then((data) => {
+          if (data.payload.errorCode)
+            this.setState({ message: data.payload.errorMessage });
+          else
           browserHistory.push('/profile');
-
       }
-    )
-
+    );
   }
 
-  render() {
-    return (
+    render() {
+        return (
       <div className="col-md-4">
         <form id="frmRegister" role="form" onSubmit={this.onFormSubmit}>
           <p>{this.state.message}</p>
@@ -41,49 +36,53 @@ class UserRegister extends Component {
           <div className="form-group">
             <label htmlFor="txtRegEmail">Email address</label>
             <input type="email" className="form-control" ref="email" id="txtEmail" placeholder="Enter email"
-                   name="email"/>
+              name="email"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="txtRegPass">Password</label>
             <input type="password" className="form-control" ref="password" id="txtPass" placeholder="Password"
-                   name="password"/>
+              name="password"
+            />
           </div>
           <button type="submit" className="btn btn-default">Register</button>
-          <br/> <br/>
+          <br /> <br />
 
            <a href="#" className="btn btn-block btn-social btn-facebook" onClick={() => {
-            this.loginWithProvider("facebook")
-          } } data-provider="facebook">Facebook</a>
+               this.loginWithProvider('facebook');
+           }} data-provider="facebook"
+           >Facebook</a>
 
           <a href="#" className="btn btn-block btn-social btn-twitter" onClick={() => {
-            this.loginWithProvider("twitter")
-          } } data-provider="twitter">Twitter</a>
+              this.loginWithProvider('twitter');
+          }} data-provider="twitter"
+          >Twitter</a>
 
           <a href="#" className="btn btn-block btn-social btn-google" onClick={() => {
-            this.loginWithProvider("google")
-          } } data-provider="twitter">Google</a>
+              this.loginWithProvider('google');
+          }} data-provider="twitter"
+          >Google</a>
 
            <a href="#" className="btn btn-block btn-social btn-github" onClick={() => {
-            this.loginWithProvider("github")
-          } } data-provider="twitter">Github</a>
-
+               this.loginWithProvider('github');
+           }} data-provider="twitter"
+           >Github</a>
 
         </form>
       </div>
-    )
-  }
+    );
+    }
 
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    registerUser
-  }, dispatch);
+    return bindActionCreators({
+        registerUser,
+    }, dispatch);
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser};
-
+    return { currentUser: state.currentUser };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRegister);
