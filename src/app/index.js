@@ -8,7 +8,6 @@ import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 import routes from './routes';
 
-// import bootstrap social
 import 'bootstrap-social';
 
 // for bundling your styles

@@ -38,6 +38,7 @@ var FireBaseTools = {
   loginWithProvider: (p) => {
     let provider = FireBaseTools.getProvider(p);
     return firebaseAuth.signInWithPopup(provider).then(function (result) {
+      console.log('result :', result);
       return firebaseAuth.currentUser;
     }).catch(function (error) {
       return {
