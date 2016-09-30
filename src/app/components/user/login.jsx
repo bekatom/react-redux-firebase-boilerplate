@@ -70,11 +70,11 @@ class UserLogin extends Component {
           <h5><Link to="/reset">Forgot password?</Link></h5>
 
           <h4>Login with</h4>
-          <a href="#" className="btn btn-primary bt-social" onClick={()=> {
+          <a href="#" className="btn btn-block btn-social btn-facebook" onClick={()=> {
             this.loginWithProvider("facebook")
           }} data-provider="facebook">Facebook</a>
 
-          <a href="#" className="btn btn-primary bt-social" onClick={()=> {
+          <a href="#" className="btn btn-block btn-social btn-twitter" onClick={()=> {
             this.loginWithProvider("twitter")
           }} data-provider="twitter">Twitter</a>
 
