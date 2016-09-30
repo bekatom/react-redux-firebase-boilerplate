@@ -18,11 +18,11 @@ class UserLogin extends Component {
 
   loginWithProvider(provider) {
     console.log("provider :", provider);
-    this.props.loginWithProvider(provider).then(data=> {
+    this.props.loginWithProvider(provider).then(data => {
       console.log("After login in provider : ", data);
 
       if (data.payload.errorCode)
-        this.setState({message: data.payload.errorMessage})
+        this.setState({ message: data.payload.errorMessage })
       else
         browserHistory.push('/profile');
 
@@ -35,14 +35,14 @@ class UserLogin extends Component {
 
     var email = this.refs.email.value;
     var password = this.refs.password.value;
-    this.props.loginUser({email: email, password: password}).then(data => {
+    this.props.loginUser({ email: email, password: password }).then(data => {
 
-        if (data.payload.errorCode)
-          this.setState({message: data.payload.errorMessage})
-        else
-          browserHistory.push('/profile');
+      if (data.payload.errorCode)
+        this.setState({ message: data.payload.errorMessage })
+      else
+        browserHistory.push('/profile');
 
-      }
+    }
     )
 
   }
@@ -58,33 +58,33 @@ class UserLogin extends Component {
           <div className="form-group">
             <label htmlFor="txtEmail">Email address</label>
             <input type="email" className="form-control" id="txtEmail" ref="email" placeholder="Enter email"
-                   name="email"/>
+              name="email"/>
           </div>
           <div className="form-group">
             <label htmlFor="txtPass">Password</label>
             <input type="password" className="form-control" id="txtPass" ref="password" placeholder="Password"
-                   name="password"/>
+              name="password"/>
           </div>
           <button type="submit" className="btn btn-default btn-block">Login</button>
           <br/>
           <h5><Link to="/reset">Forgot password?</Link></h5>
 
           <h4>Login with</h4>
-          <a href="#" className="btn btn-block btn-social btn-facebook" onClick={()=> {
+          <a href="#" className="btn btn-block btn-social btn-facebook" onClick={() => {
             this.loginWithProvider("facebook")
-          }} data-provider="facebook">Facebook</a>
+          } } data-provider="facebook">Facebook</a>
 
-          <a href="#" className="btn btn-block btn-social btn-twitter" onClick={()=> {
+          <a href="#" className="btn btn-block btn-social btn-twitter" onClick={() => {
             this.loginWithProvider("twitter")
-          }} data-provider="twitter">Twitter</a>
+          } } data-provider="twitter">Twitter</a>
 
-          {/*
-           <a href="#" className="btn btn-info bt-social" data-provider="twitter">Twitter</a>
+          <a href="#" className="btn btn-block btn-social btn-google" onClick={() => {
+            this.loginWithProvider("google")
+          } } data-provider="twitter">Google</a>
 
-           <a href="#" className="btn btn-danger bt-social" data-provider="google">Google+</a>
-           <a href="#" className="btn btn-default bt-social" data-provider="github">GitHub</a>
-           <a href="#" className="btn btn-warning" id="btAnon">Anon</a>
-           */}
+           <a href="#" className="btn btn-block btn-social btn-github" onClick={() => {
+            this.loginWithProvider("github")
+          } } data-provider="twitter">Github</a>
 
         </form>
       </div>
@@ -103,7 +103,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {currentUser: state.currentUser};
+  return { currentUser: state.currentUser };
 
 }
 
