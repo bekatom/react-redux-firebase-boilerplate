@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import {FIREBASE_CONFIG} from '../config';
+import { FIREBASE_CONFIG } from '../config';
 
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
@@ -15,17 +15,17 @@ var FireBaseTools = {
    */
   getProvider: (provider) => {
     switch (provider) {
-      case "email":
+    case 'email':
         return new firebase.auth.EmailAuthProvider();
-      case "facebook":
+    case 'facebook':
         return new firebase.auth.FacebookAuthProvider();
-      case "github":
+    case 'github':
         return new firebase.auth.GithubAuthProvider();
-      case "google":
+    case 'google':
         return new firebase.auth.GoogleAuthProvider();
-      case "twitter":
+    case 'twitter':
         return new firebase.auth.TwitterAuthProvider();
-      default:
+    default:
     }
   },
 
@@ -38,13 +38,12 @@ var FireBaseTools = {
   loginWithProvider: (p) => {
     let provider = FireBaseTools.getProvider(p);
     return firebaseAuth.signInWithPopup(provider).then(function (result) {
-      console.log('result :', result);
-      return firebaseAuth.currentUser;
+        return firebaseAuth.currentUser;
     }).catch(function (error) {
       return {
         errorCode: error.code,
         errorMessage: error.message
-      }
+      };
     });
   },
 
@@ -61,7 +60,7 @@ var FireBaseTools = {
       return {
         errorCode: error.code,
         errorMessage: error.message
-      }
+      };
     });
   },
 
@@ -74,7 +73,7 @@ var FireBaseTools = {
     return firebaseAuth.signOut().then(() => {
       return {
         success: 1,
-        message: "logout"
+        message: 'logout'
       };
     });
   },

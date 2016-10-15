@@ -12,20 +12,16 @@ class UserLogin extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.loginWithProvider = this.loginWithProvider.bind(this);
     this.state = {
-      message: ''
-    }
+      message: '',
+    };
   }
 
   loginWithProvider(provider) {
-    console.log("provider :", provider);
     this.props.loginWithProvider(provider).then(data => {
-      console.log("After login in provider : ", data);
-
       if (data.payload.errorCode)
         this.setState({ message: data.payload.errorMessage })
       else
         browserHistory.push('/profile');
-
     });
     // alert("login with provider");
   }
