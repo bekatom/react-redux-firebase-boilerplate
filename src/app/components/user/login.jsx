@@ -20,8 +20,8 @@ class UserLogin extends Component {
       this.props.loginWithProvider(provider).then((data) => {
         if (data.payload.errorCode)
           {this.setState({ message: data.payload.errorMessage })};
-        else
-        {browserHistory.push('/profile');}
+        else  
+        {  browserHistory.push('/profile');}
     });
     // alert("login with provider");
   }
