@@ -9,5 +9,8 @@
     "max-len": ["warn", 120],
     "indent": ["warn", 4],
     "react/jsx-indent": ["warn", 4]
+  },
+  "globals": {
+    "localStorage": true 
   }
 }
