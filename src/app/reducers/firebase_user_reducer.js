@@ -29,6 +29,6 @@ export default function (state = null, action) {
     case LOGIN_WITH_PROVIDER_FIREBASE:
         return action.payload;
     default:
-        return null;
+        return state;
     }
 }
