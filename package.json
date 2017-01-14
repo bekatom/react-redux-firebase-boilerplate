@@ -73,6 +73,7 @@
     "react-router": "^2.0.0-rc5",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
+    "redux-saga": "^0.14.2",
     "redux-thunk": "^2.1.0"
   }
 }
