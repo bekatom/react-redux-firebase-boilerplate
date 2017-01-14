@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const Reactotron = require('reactotron-react-native').default;
 const errorPlugin = require('reactotron-react-native').trackGlobalErrors;
 const apisaucePlugin = require('reactotron-apisauce');
@@ -22,8 +24,8 @@ if (__DEV__) {
     // let's connect!
     .connect();
 
-  // Totally hacky, but this allows you to not both importing reactotron-react-native
-  // on every file.  This is just DEV mode, so no big deal.
+    // Totally hacky, but this allows you to not both importing reactotron-react-native
+    // on every file.  This is just DEV mode, so no big deal.
     console.tron = Reactotron;
 } else {
   // a mock version should you decide to leave console.tron in your codebase
@@ -35,3 +37,5 @@ if (__DEV__) {
         image: () => false,
     };
 }
+
+/* eslint-disable no-undef */

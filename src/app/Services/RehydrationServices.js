@@ -15,13 +15,13 @@ const updateReducers = (store) => {
             console.tron.display({
                 name: 'PURGE',
                 value: {
-                     'Old Version:': localVersion,
-                     'New Version:': reducerVersion,
-                 },
+                    'Old Version:': localVersion,
+                    'New Version:': reducerVersion,
+                },
                 preview: 'Reducer Version Change Detected',
                 important: true,
             });
-      // Purge store
+            // Purge store
             persistStore(store, config, startup).purge();
             AsyncStorage.setItem('reducerVersion', reducerVersion);
         } else {
