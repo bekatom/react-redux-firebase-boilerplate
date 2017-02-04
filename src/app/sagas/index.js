@@ -1,16 +1,17 @@
-import { takeLatest, takeEvery } from 'redux-saga';
-import cbApi from '../Services/authentication';
+import { put, call, takeEvery, delay } from 'redux-saga';
+// import { delay } from 'redux-saga';
+// import cbApi from '../Services/authentication';
 
 
 /* ------------- Types ------------- */
-import { StartupTypes } from '../Redux/StartupRedux';
+// import { StartupTypes } from '../Redux/StartupRedux';
 // import { TemperatureTypes } from '../Redux/TemperatureRedux';
-import { LoginTypes } from '../Redux/LoginRedux';
-import { AnalyzeTypes } from '../Redux/AnalyzeRedux';
+// import { LoginTypes } from '../Redux/LoginRedux';
+// import { AnalyzeTypes } from '../Redux/AnalyzeRedux';
 
 /* ------------- Sagas ------------- */
-import { startup } from './StartupSagas';
-import login, { logoutUser, isLoggedIn } from './LoginSagas';
+// import { startup } from './StartupSagas';
+// import login, { logoutUser, isLoggedIn } from './LoginSagas';
 
 
 // import databaseInit from '../Database/databaseSagas';
@@ -21,17 +22,17 @@ import login, { logoutUser, isLoggedIn } from './LoginSagas';
 // to the sagas which need it.
 // const api = DebugSettings.useFixtures ? FixtureAPI : API.create();
 
-const api = cbApi.create();
+// const api = cbApi.create();
 // initialize analyze Service api
-const analyzeAPI = analyzeService.create();
+// const analyzeAPI = analyzeService.create();
+
+export function* incrementAsync() {
+    yield call(delay, 1000);
+    yield put({ type: 'INCREMENT' });
+}
 
 /* ------------- Connect Types To Sagas ------------- */
 export default function* root() {
-    yield [
-        // some sagas only receive an action
-        takeLatest(StartupTypes.STARTUP, startup),
-        // some sagas receive extra parameters in addition to an action
-        // takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api),
-    ];
+    yield takeEvery('INCREMENT_ASYNC', incrementAsync);
 }
 
