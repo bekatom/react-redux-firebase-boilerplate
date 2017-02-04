@@ -28,14 +28,6 @@ const store = createStore(
 )
 
 sagaMiddleware.run(rootSaga)
-// const action = type => store.dispatch({ type });
-
-
-// console.log('sagaMiddleware', sagaMiddleware);
-
-
-// import reducer from './reducers'
-//
 
 
 // for bundling your styles
@@ -43,18 +35,6 @@ import './bundle.scss'
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 
-
-/* function render() {
-    ReactDOM.render(
-        <Provider store={store}>
-            <Router history={browserHistory} routes={routes} />
-        </Provider>
-  , document.querySelector('.react-root'));
-}
-
-
-render();
-store.subscribe(render);*/
 
 ReactDOM.render(
     <Provider store={store}>
