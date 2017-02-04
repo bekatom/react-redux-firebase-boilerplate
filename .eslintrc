@@ -8,7 +8,10 @@
   "rules": {
     "max-len": ["warn", 120],
     "indent": ["warn", 4],
-    "react/jsx-indent": ["warn", 4]
+    "react/jsx-indent": ["warn", 4],
+    "semi": [2, "never"],
+    "no-underscore-dangle": 0,
+    "no-console": 0
   },
   "globals": {
     "localStorage": true 
