@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import 'bootstrap-social';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -10,7 +11,6 @@ import createSagaMiddleware from 'redux-saga';
 import { Router, browserHistory } from 'react-router';
 import ReduxPromise from 'redux-promise';
 
-import 'bootstrap-social';
 
 import reducers from './reducers';
 import routes from './routes';
@@ -24,10 +24,10 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
-const action = type => store.dispatch({ type });
+// const action = type => store.dispatch({ type });
 
 
-console.log('sagaMiddleware', sagaMiddleware);
+// console.log('sagaMiddleware', sagaMiddleware);
 
 
 // import reducer from './reducers'
