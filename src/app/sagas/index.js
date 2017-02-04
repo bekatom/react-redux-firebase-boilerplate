@@ -1,4 +1,6 @@
-import { put, call, takeEvery, delay } from 'redux-saga';
+import { delay } from 'redux-saga';
+import { put, call, takeEvery } from 'redux-saga/effects';
+
 // import { delay } from 'redux-saga';
 // import cbApi from '../Services/authentication';
 
