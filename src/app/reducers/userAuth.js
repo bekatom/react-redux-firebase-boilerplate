@@ -13,7 +13,7 @@ export const userAuth = (state = initialState, action) => {
     switch (action.type) {
     // user fetch
     case actionTypes.USER_FETCH_REQUEST:
-        return action.payload
+        return { ...state }
     case actionTypes.USER_FETCH_SUCCESS:
         return action.payload
     case actionTypes.USER_FETCH_FAILURE:
