@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux'
+/* eslint import/prefer-default-export: 0 */
 import * as actionType from '../actions/types'
-
 
 const initialState = {
     status: {
@@ -10,7 +9,7 @@ const initialState = {
 
 }
 
-const startup = (state = initialState.status, action) => {
+export const startup = (state = initialState.status, action) => {
     switch (action.type) {
     case actionType.STARTUP_REQUEST:
         return { pending: true, error: null }
@@ -26,7 +25,3 @@ const startup = (state = initialState.status, action) => {
     }
 }
 
-
-export default combineReducers({
-    startup,
-})

@@ -1,8 +1,15 @@
-import { combineReducers } from 'redux'
+/* eslint import/prefer-default-export: 0 */
+
 import * as actionTypes from '../actions/types'
 
 
-const userAuth = (state, action) => {
+const initialState = {
+    username: '',
+    email: '',
+    status: '',
+}
+
+export const userAuth = (state = initialState, action) => {
     switch (action.type) {
     case actionTypes.USER_LOGIN_REQUEST:
         return action.payload
@@ -15,7 +22,3 @@ const userAuth = (state, action) => {
     }
 }
 
-
-export default combineReducers({
-    userAuth,
-})
