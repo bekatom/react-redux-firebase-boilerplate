@@ -23,27 +23,21 @@ export function userLoginFailure(error) {
     }
 }
 
-
-// export function loginUser(user) {
-//     const request = FireBaseTools.loginUser(user)
-//     return {
-//         type: LOGIN_FIREBASE_USER,
-//         payload: request,
-//     }
-// }
-
-// export function fetchUser() {
-//     const request = FireBaseTools.fetchUser()
-//     return {
-//         type: FETCH_FIREBASE_USER,
-//         payload: request,
-//     }
-// }
-
-// export function updateUser(user) {
-//     const request = FireBaseTools.updateUserProfile(user)
-//     return {
-//         type: UPDATE_FIREBASE_USER,
-//         payload: request,
-//     }
-// }
+// / FETCH USER
+export function fetchUserRequest() {
+    return {
+        type: actionTypes.USER_FETCH_REQUEST,
+    }
+}
+export function fetchUserSuccess(user) {
+    return {
+        type: actionTypes.USER_FETCH_SUCCESS,
+        payload: user,
+    }
+}
+export function fetchUserFailure(error) {
+    return {
+        type: actionTypes.USER_FETCH_SUCCESS,
+        error,
+    }
+}
