@@ -37,21 +37,29 @@ export function* incrementAsync() {
 
 
 export function* testMethod() {
-    console.log('Startup')
-    yield put({ test: 'this is test data', x: 1 })
-   //  yield put(DatabaseActions.initDatabaseSuccess(data))
-  // const temp = yield select(selectTemperature);
-  // // only fetch new temps when we don't have one yet
-  // if (!is(Number, temp)) {
-  //   yield put(TemperatureActions.temperatureRequest('San Francisco'));
-  // }
-   // yield put(1);
+    try {
+        console.log('Startup SAGAS')
+       // const cart = yield select(getCart)
+       // yield call(api.buyProducts, cart)
+        yield put({ test: 'this is test data', x: 1 })
+    } catch (error) {
+        yield put({ test: 'error happened', x: 0 })
+    }
+
+
+    //  yield put(DatabaseActions.initDatabaseSuccess(data))
+    // const temp = yield select(selectTemperature);
+    // // only fetch new temps when we don't have one yet
+    // if (!is(Number, temp)) {
+    //   yield put(TemperatureActions.temperatureRequest('San Francisco'));
+    // }
+    // yield put(1);
 }
 
 export default function* root() {
     yield [
         takeEvery('INCREMENT_ASYNC', incrementAsync),
-        takeLatest(actionTypes.STARTUP, startup),
+        takeLatest(actionTypes.STARTUP_REQUEST, testMethod),
         //fork(testMethod),
     ]
 }

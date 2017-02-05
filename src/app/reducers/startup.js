@@ -1,11 +1,30 @@
 import { combineReducers } from 'redux'
 import * as actionType from '../actions/types'
 
-const startup = (state = {}, action) => {
+
+const initialState = {
+    status: {
+        pending: false,
+        error: null,
+    },
+
+}
+
+const startup = (state = initialState.status, action) => {
+    console.log('startup reducer ', action)
     switch (action.type) {
-    case actionType.STARTUP:
-        console.log('startup reducer')
-        return { ...state }
+    case actionType.STARTUP_REQUEST:
+        console.log('startup reducer request')
+        return { pending: true, error: null }
+    case actionType.STARTUP_SUCCESS:
+        console.log('startup reducer success')
+        return initialState.status
+    case actionType.STARTUP_FAILURE:
+        console.log('startup reducer failure')
+        return {
+            pending: false,
+            error: action.error,
+        }
     default:
         return state
     }
