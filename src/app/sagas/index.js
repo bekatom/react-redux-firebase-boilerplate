@@ -1,5 +1,5 @@
-import { delay } from 'redux-saga';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { delay, takeLatest } from 'redux-saga'
+import { put, call, takeEvery } from 'redux-saga/effects'
 
 // import { delay } from 'redux-saga';
 // import cbApi from '../Services/authentication';
@@ -29,12 +29,12 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 // const analyzeAPI = analyzeService.create();
 
 export function* incrementAsync() {
-    yield call(delay, 1000);
-    yield put({ type: 'INCREMENT' });
+    yield call(delay, 1000)
+    yield put({ type: 'INCREMENT' })
 }
 
 /* ------------- Connect Types To Sagas ------------- */
 export default function* root() {
-    yield takeEvery('INCREMENT_ASYNC', incrementAsync);
+    yield takeEvery('INCREMENT_ASYNC', incrementAsync)
 }
 
