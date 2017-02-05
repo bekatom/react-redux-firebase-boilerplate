@@ -4,9 +4,10 @@ import * as actionTypes from '../actions/types'
 
 
 const initialState = {
-    username: '',
-    email: '',
-    status: '',
+    username: null,
+    email: null,
+    status: null,
+    error: null,
 }
 
 export const userAuth = (state = initialState, action) => {
@@ -17,14 +18,14 @@ export const userAuth = (state = initialState, action) => {
     case actionTypes.USER_FETCH_SUCCESS:
         return action.payload
     case actionTypes.USER_FETCH_FAILURE:
-        return action.payload
+        return { error: action.error }
     // user login
     case actionTypes.USER_LOGIN_REQUEST:
-        return action.payload
+        return { ...state }
     case actionTypes.USER_LOGIN_SUCCESS:
         return action.payload
     case actionTypes.USER_LOGIN_FAILURE:
-        return action.payload
+        return { error: action.error }
     default:
         return state
     }
