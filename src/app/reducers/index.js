@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import FireBaseUserReducer from './firebase_user_reducer'
+import startup from './startup'
 // import rootSaga from '../sagas'
 
 const rootReducer = combineReducers({
     currentUser: FireBaseUserReducer,
+    startup,
 
 })
 

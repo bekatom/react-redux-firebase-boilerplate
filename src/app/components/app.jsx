@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchUser, logoutUser } from '../actions/firebase_actions';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchUser, logoutUser } from '../actions/firebase_actions'
 
 class App extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
-        this.props.fetchUser();
-        this.logOut = this.logOut.bind(this);
+        this.props.fetchUser()
+        this.logOut = this.logOut.bind(this)
     }
 
     logOut() {
         this.props.logoutUser().then((data) => {
       // reload props from reducer
-            this.props.fetchUser();
-        });
+            this.props.fetchUser()
+        })
     }
 
     renderUserMenu(currentUser) {
@@ -36,12 +36,12 @@ class App extends Component {
                         <li><Link to="/logout" onClick={this.logOut}>Logout</Link></li>
                     </ul>
                 </li>
-            );
+            )
         } else {
             return [
                 <li key={1}><Link to="/login">Login</Link></li>,
                 <li key={2}><Link to="/register">Register</Link></li>,
-            ];
+            ]
         }
     }
 
@@ -78,18 +78,18 @@ class App extends Component {
                     {this.props.children}
                 </div>
             </div>
-        );
+        )
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchUser, logoutUser }, dispatch);
+    return bindActionCreators({ fetchUser, logoutUser }, dispatch)
 }
 
 
 function mapStateToProps(state) {
-    return { currentUser: state.currentUser };
+    return { currentUser: state.currentUser }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

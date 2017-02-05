@@ -1,4 +1,4 @@
-// import { put, call } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 // import TemperatureActions from '../Redux/TemperatureRedux';
 // import { is } from 'ramda'
 // import { _databaseInit } from '../Database/databaseSagas'
@@ -12,6 +12,7 @@ export default function* startup(action) {
     //  call database action
     // const data = yield call(_databaseInit)
     console.log('Startup', action)
+    yield put({ test: 'this is test data', x: 1 })
    //  yield put(DatabaseActions.initDatabaseSuccess(data))
   // const temp = yield select(selectTemperature);
   // // only fetch new temps when we don't have one yet

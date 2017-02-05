@@ -1,5 +1,7 @@
-import { delay, takeLatest } from 'redux-saga'
-import { put, call, takeEvery } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
+import { put, call, takeEvery, takeLatest } from 'redux-saga/effects'
+import startup from './startupSagas'
+import * as actionTypes from '../actions/types'
 
 // import { delay } from 'redux-saga';
 // import cbApi from '../Services/authentication';
@@ -33,8 +35,10 @@ export function* incrementAsync() {
     yield put({ type: 'INCREMENT' })
 }
 
-/* ------------- Connect Types To Sagas ------------- */
-export default function* root() {
-    yield takeEvery('INCREMENT_ASYNC', incrementAsync)
-}
 
+export default function* root() {
+    yield [
+        takeEvery('INCREMENT_ASYNC', incrementAsync),
+        takeLatest(actionTypes.STARTUP, startup),
+    ]
+}
