@@ -12,10 +12,11 @@ export default function* userAuthSagas(data) {
     }
 }
 
-export function* userFetchSagas(data) {
+export function* userFetchSagas() {
     try {
         // const request = FireBaseTools.loginUser(user)
-        const user = yield call(FireBaseTools.fetchUser, data)
+        const user = yield call(FireBaseTools.fetchUser)
+        console.log('userFetchSagas ... ', user)
         yield put(fetchUserSuccess(user))
     } catch (error) {
         yield put(fetchUserFailure(error))
