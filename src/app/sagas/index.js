@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { put, call, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put, call, takeEvery, takeLatest, fork } from 'redux-saga/effects'
 import startup from './startupSagas'
 import * as actionTypes from '../actions/types'
 
@@ -36,9 +36,22 @@ export function* incrementAsync() {
 }
 
 
+export function* testMethod() {
+    console.log('Startup')
+    yield put({ test: 'this is test data', x: 1 })
+   //  yield put(DatabaseActions.initDatabaseSuccess(data))
+  // const temp = yield select(selectTemperature);
+  // // only fetch new temps when we don't have one yet
+  // if (!is(Number, temp)) {
+  //   yield put(TemperatureActions.temperatureRequest('San Francisco'));
+  // }
+   // yield put(1);
+}
+
 export default function* root() {
     yield [
         takeEvery('INCREMENT_ASYNC', incrementAsync),
         takeLatest(actionTypes.STARTUP, startup),
+        //fork(testMethod),
     ]
 }

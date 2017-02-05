@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import { fetchUser, logoutUser } from '../actions/firebase_actions'
+import startupAction from '../actions/startup'
 
 class App extends Component {
 
     constructor(props) {
         super(props)
+
+        this.props.startup()
 
         this.props.fetchUser()
         this.logOut = this.logOut.bind(this)
@@ -15,7 +18,7 @@ class App extends Component {
 
     logOut() {
         this.props.logoutUser().then((data) => {
-      // reload props from reducer
+            // reload props from reducer
             this.props.fetchUser()
         })
     }
@@ -82,14 +85,33 @@ class App extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchUser, logoutUser }, dispatch)
-}
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({ fetchUser, logoutUser }, dispatch)
+// }
 
 
 function mapStateToProps(state) {
-    return { currentUser: state.currentUser }
+    return {
+        currentUser: state.currentUser,
+        startup: state.startup,
+    }
 }
+
+// const mapStateToProps = state =>
+//      ({
+//          data: state.vtcases.data,
+//          doc: state.vtcases.doc,
+//          isDBInit: isDatabaseInit(state.databaseInitialize),
+//      })
+// ;
+
+
+const mapDispatchToProps = dispatch => ({
+    fetchUser,
+    logoutUser,
+    startup: () => startupAction(),
+
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
