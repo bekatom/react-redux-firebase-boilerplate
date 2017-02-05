@@ -1,4 +1,5 @@
-import { put, call } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
+import { startupSuccess, startupFailure } from '../actions/startup'
 // import TemperatureActions from '../Redux/TemperatureRedux';
 // import { is } from 'ramda'
 // import { _databaseInit } from '../Database/databaseSagas'
@@ -7,17 +8,10 @@ import { put, call } from 'redux-saga/effects'
 // export const selectTemperature = state => state.temperature.temperature;
 
 // process STARTUP actions
-export default function* startup(action) {
-    // console.log('on startup saga :: ', action);
-    //  call database action
-    // const data = yield call(_databaseInit)
-    console.log('Startup', action)
-    yield put({ test: 'this is test data', x: 1 })
-   //  yield put(DatabaseActions.initDatabaseSuccess(data))
-  // const temp = yield select(selectTemperature);
-  // // only fetch new temps when we don't have one yet
-  // if (!is(Number, temp)) {
-  //   yield put(TemperatureActions.temperatureRequest('San Francisco'));
-  // }
-   // yield put(1);
+export default function* startup() {
+    try {
+        yield put(startupSuccess(true))
+    } catch (error) {
+        yield put(startupFailure(error))
+    }
 }

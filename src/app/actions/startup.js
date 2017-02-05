@@ -7,14 +7,12 @@ import {
 } from './types'
 
 export function startupRequest() {
-    console.log('startupRequest Action')
     return {
         type: STARTUP_REQUEST,
     }
 }
 
 export function startupSuccess(status) {
-    console.log('startupSuccess startupSuccess')
     return {
         type: STARTUP_SUCCESS,
         status,
@@ -22,7 +20,6 @@ export function startupSuccess(status) {
 }
 
 export function startupFailure(error) {
-    console.log('startupFailure startupSuccess')
     return {
         type: STARTUP_FAILURE,
         error,

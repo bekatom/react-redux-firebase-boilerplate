@@ -2,7 +2,7 @@ import { delay } from 'redux-saga'
 import { put, call, takeEvery, takeLatest, fork } from 'redux-saga/effects'
 import startup from './startupSagas'
 import * as actionTypes from '../actions/types'
-import { startupRequest, startupSuccess, startupFailure } from '../actions/startup'
+// import { startupRequest, startupSuccess, startupFailure } from '../actions/startup'
 
 // import { delay } from 'redux-saga';
 // import cbApi from '../Services/authentication';
@@ -31,34 +31,11 @@ import { startupRequest, startupSuccess, startupFailure } from '../actions/start
 // initialize analyze Service api
 // const analyzeAPI = analyzeService.create();
 
-export function* incrementAsync() {
-    yield call(delay, 1000)
-    yield put({ type: 'INCREMENT' })
-}
-
-
-export function* testMethod() {
-    try {
-        console.log('Startup SAGAS')
-        yield put(startupSuccess(true))
-    } catch (error) {
-        yield put(startupFailure(error))
-    }
-
-
-    //  yield put(DatabaseActions.initDatabaseSuccess(data))
-    // const temp = yield select(selectTemperature);
-    // // only fetch new temps when we don't have one yet
-    // if (!is(Number, temp)) {
-    //   yield put(TemperatureActions.temperatureRequest('San Francisco'));
-    // }
-    // yield put(1);
-}
 
 export default function* root() {
     yield [
-        takeEvery('INCREMENT_ASYNC', incrementAsync),
-        takeLatest(actionTypes.STARTUP_REQUEST, testMethod),
+       // takeEvery('INCREMENT_ASYNC', incrementAsync),
+        takeLatest(actionTypes.STARTUP_REQUEST, startup),
         //fork(testMethod),
     ]
 }
