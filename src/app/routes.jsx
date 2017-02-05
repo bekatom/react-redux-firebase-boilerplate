@@ -1,14 +1,14 @@
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import App from './Components/app';
+import React from 'react'
+import { Route, IndexRoute } from 'react-router'
+import App from './components/app'
 
-import HomeIndex from './Components/IndexHome';
-import UserLogin from './Components/User/Login';
-import UserLogout from './Components/User/Logout';
-import UserRegister from './Components/user/register';
-import UserProfile from './Components/user/profile';
-import ResetPassword from './Components/user/reset_password';
-import requireAuth from './utils/authenticated';
+import HomeIndex from './components/IndexHome'
+import UserLogin from './components/user/Login'
+import UserLogout from './components/user/Logout'
+import UserRegister from './components/user/register'
+import UserProfile from './components/user/profile'
+import ResetPassword from './components/user/reset_password'
+import requireAuth from './utils/authenticated'
 
 export default (
     <Route path="/" component={App}>
@@ -20,4 +20,4 @@ export default (
         <Route path="/profile" component={UserProfile} onEnter={requireAuth} />
     </Route>
 
-);
+)

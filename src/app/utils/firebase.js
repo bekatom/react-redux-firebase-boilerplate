@@ -1,9 +1,9 @@
-import firebase from 'firebase';
-import { FIREBASE_CONFIG } from '../config';
+import firebase from 'firebase'
+import { FIREBASE_CONFIG } from '../config'
 
-export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
-export const firebaseAuth = firebaseApp.auth();
-export const firebaseDb = firebaseApp.database();
+export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG)
+export const firebaseAuth = firebaseApp.auth()
+export const firebaseDb = firebaseApp.database()
 
 const FireBaseTools = {
 
@@ -16,17 +16,17 @@ const FireBaseTools = {
     getProvider: (provider) => {
         switch (provider) {
         case 'email':
-            return new firebase.auth.EmailAuthProvider();
+            return new firebase.auth.EmailAuthProvider()
         case 'facebook':
-            return new firebase.auth.FacebookAuthProvider();
+            return new firebase.auth.FacebookAuthProvider()
         case 'github':
-            return new firebase.auth.GithubAuthProvider();
+            return new firebase.auth.GithubAuthProvider()
         case 'google':
-            return new firebase.auth.GoogleAuthProvider();
+            return new firebase.auth.GoogleAuthProvider()
         case 'twitter':
-            return new firebase.auth.TwitterAuthProvider();
+            return new firebase.auth.TwitterAuthProvider()
         default:
-            throw new Error('Provider is not supported!!!');
+            throw new Error('Provider is not supported!!!')
         }
     },
 
@@ -37,11 +37,11 @@ const FireBaseTools = {
    * @returns {any|!firebase.Thenable.<*>|firebase.Thenable<any>}
    */
     loginWithProvider: (p) => {
-        const provider = FireBaseTools.getProvider(p);
+        const provider = FireBaseTools.getProvider(p)
         return firebaseAuth.signInWithPopup(provider).then(firebaseAuth.currentUser).catch(error => ({
             errorCode: error.code,
             errorMessage: error.message,
-        }));
+        }))
     },
 
   /**
@@ -73,11 +73,11 @@ const FireBaseTools = {
    */
     fetchUser: () => new Promise((resolve, reject) => {
         const unsub = firebaseAuth.onAuthStateChanged((user) => {
-            unsub();
-            resolve(user);
+            unsub()
+            resolve(user)
         }, (error) => {
-            reject(error);
-        });
+            reject(error)
+        })
     }),
 
   /**
@@ -147,6 +147,6 @@ const FireBaseTools = {
    * @returns {!firebase.database.Reference|firebase.database.Reference}
    */
     getDatabaseReference: path => firebaseDb.ref(path),
-};
+}
 
-export default FireBaseTools;
+export default FireBaseTools
