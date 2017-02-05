@@ -10,11 +10,16 @@ class App extends Component {
     constructor(props) {
         super(props)
 
-        this.props.startupRequest()
+       // this.props.startupRequest()
 
-        this.props.fetchUser()
-        this.logOut = this.logOut.bind(this)
+        // this.props.fetchUser()
+        // this.logOut = this.logOut.bind(this)
     }
+
+    componentDidMount() {
+        this.props.startup()
+    }
+
 
     logOut() {
         this.props.logoutUser().then((data) => {
@@ -90,14 +95,14 @@ class App extends Component {
 // }
 
 App.propTypes = {
-    startupRequest: PropTypes.func.isRequired,
+    startup: PropTypes.func.isRequired,
 }
 
 
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-        startup: state.startup,
+       // startup: state.startup,
     }
 }
 
@@ -114,7 +119,7 @@ const mapDispatchToProps = dispatch => ({
     fetchUser,
     logoutUser,
     // startup: () => startupRequest(),
-    startupRequest: () => dispatch(startupRequest()),
+    startup: () => dispatch(startupRequest()),
 
 })
 

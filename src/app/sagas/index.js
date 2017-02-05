@@ -2,6 +2,7 @@ import { delay } from 'redux-saga'
 import { put, call, takeEvery, takeLatest, fork } from 'redux-saga/effects'
 import startup from './startupSagas'
 import * as actionTypes from '../actions/types'
+import { startupRequest, startupSuccess, startupFailure } from '../actions/startup'
 
 // import { delay } from 'redux-saga';
 // import cbApi from '../Services/authentication';
@@ -39,11 +40,9 @@ export function* incrementAsync() {
 export function* testMethod() {
     try {
         console.log('Startup SAGAS')
-       // const cart = yield select(getCart)
-       // yield call(api.buyProducts, cart)
-        yield put({ test: 'this is test data', x: 1 })
+        yield put(startupSuccess(true))
     } catch (error) {
-        yield put({ test: 'error happened', x: 0 })
+        yield put(startupFailure(error))
     }
 
 
