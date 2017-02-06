@@ -4,7 +4,6 @@ import FireBaseTools from '../utils/firebase'
 
 export default function* userAuthSagas(data) {
     try {
-        // const request = FireBaseTools.loginUser(user)
         const user = yield call(FireBaseTools.loginUser, data)
         yield put(userLoginSuccess(user))
     } catch (error) {
@@ -13,11 +12,8 @@ export default function* userAuthSagas(data) {
 }
 
 export function* userFetchSagas() {
-    console.log('userFetchSagas')
     try {
-        // const request = FireBaseTools.loginUser(user)
         const user = yield call(FireBaseTools.fetchUser)
-        console.log('userFetchSagas ... ', user)
         yield put(fetchUserSuccess(user))
     } catch (error) {
         yield put(fetchUserFailure(error))

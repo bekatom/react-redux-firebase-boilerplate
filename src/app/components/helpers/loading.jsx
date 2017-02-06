@@ -1,12 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-
-const Loading = () => {
-    return (
+const Loading = () => (
     <div className="col-md-4">
       Loading ....
     </div>
-  );
-};
+  )
 
-export default Loading;
+export default Loading
