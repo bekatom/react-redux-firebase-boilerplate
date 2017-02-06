@@ -2,20 +2,20 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
-import { fetchUser, logoutUser } from '../actions/firebase_actions'
+import { logoutUser } from '../actions/firebase_actions'
 import { startupRequest } from '../actions/startup'
-import { fetchUserRequest } from '../actions/userAuth'
+import { fetchUserRequest, userLogoutRequest } from '../actions/userAuth'
 
 class App extends Component {
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
 
-       // this.props.startupRequest()
+    //    // this.props.startupRequest()
 
-        // this.props.fetchUser()
-        // this.logOut = this.logOut.bind(this)
-    }
+    //     // this.props.fetchUser()
+    //     // this.logOut = this.logOut.bind(this)
+    // }
 
     componentDidMount() {
         this.props.startup()
@@ -24,12 +24,13 @@ class App extends Component {
 
 
     logOut() {
-        this.props.logoutUser().then((data) => {
-            // reload props from reducer
-            this.props.fetchUser()
-        })
+        this.props.logoutUser()
+        // this.props.fetchUser()
+        // this.props.logoutUser().then((data) => {
+        //     // reload props from reducer
+        //     this.props.fetchUser()
+        // })
     }
-
     renderUserMenu(currentUser) {
     // if current user exists and user id exists than make user navigation
         if (currentUser && currentUser.uid) {
@@ -99,13 +100,14 @@ class App extends Component {
 App.propTypes = {
     startup: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
+    logoutUser: PropTypes.func.isRequired,
 }
 
 
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-       // startup: state.startup,
+        // startup: state.startup,
     }
 }
 
@@ -117,13 +119,12 @@ function mapStateToProps(state) {
 //      })
 // ;
 
-
 const mapDispatchToProps = dispatch => ({
     fetchUser: () => dispatch(fetchUserRequest()),
-    logoutUser,
+    logoutUser: () => dispatch(userLogoutRequest()),
+    // logoutUser,
     // startup: () => startupRequest(),
     startup: () => dispatch(startupRequest()),
-
 })
 
 

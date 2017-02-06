@@ -6,8 +6,11 @@ import * as actionTypes from '../actions/types'
 const initialState = {
     username: null,
     email: null,
-    status: null,
     error: null,
+    isLoggedIn: false,
+    firebase: {
+
+    },
 }
 
 export const userAuth = (state = initialState, action) => {
@@ -16,7 +19,11 @@ export const userAuth = (state = initialState, action) => {
     case actionTypes.USER_FETCH_REQUEST:
         return { ...state }
     case actionTypes.USER_FETCH_SUCCESS:
-        return action.payload
+        return { firebase: action.payload,
+            email: action.payload.email,
+            username: action.payload.displayName,
+            isLoggedIn: true }
+
     case actionTypes.USER_FETCH_FAILURE:
         return { error: action.error }
     // user login

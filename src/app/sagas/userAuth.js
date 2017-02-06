@@ -21,8 +21,8 @@ export function* userFetchSagas() {
     }
 }
 
-
 export function* userLogout(user) {
+    console.log('user logout', user)
     try {
         const data = yield call(FireBaseTools.logoutUser, user)
         yield put(userLogoutSuccess(data))
