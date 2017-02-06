@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
-import { logoutUser } from '../actions/firebase_actions'
+// import { logoutUser } from '../actions/firebase_actions'
 import { startupRequest } from '../actions/startup'
 import { fetchUserRequest, userLogoutRequest } from '../actions/userAuth'
 
@@ -10,10 +10,6 @@ class App extends Component {
 
     constructor(props) {
         super(props)
-
-       // this.props.startupRequest()
-
-        // this.props.fetchUser()
         this.logOut = this.logOut.bind(this)
     }
 
@@ -24,14 +20,10 @@ class App extends Component {
 
     logOut() {
         this.props.logoutUser()
-        // this.props.fetchUser()
-        // this.props.logoutUser().then((data) => {
-        //     // reload props from reducer
-        //     this.props.fetchUser()
-        // })
+        this.props.fetchUser()
     }
     renderUserMenu(currentUser) {
-    // if current user exists and user id exists than make user navigation
+        // if current user exists and user id exists than make user navigation
         if (currentUser && currentUser.firebase.uid) {
             return (
                 <li className="dropdown">

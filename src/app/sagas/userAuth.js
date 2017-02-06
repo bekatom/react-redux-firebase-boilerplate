@@ -16,10 +16,8 @@ export function* userFetchSagas() {
     try {
         const user = yield call(FireBaseTools.fetchUser)
         if (user !== null) {
-            console.log('not null', user)
             yield put(fetchUserSuccess(user))
         } else {
-            console.log('failure ', user)
             yield put(fetchUserFailure())
         }
     } catch (error) {

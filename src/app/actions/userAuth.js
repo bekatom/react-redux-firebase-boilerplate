@@ -49,7 +49,7 @@ export function userLogoutRequest() {
 }
 export function userLogoutSuccess() {
     return {
-        type: actionTypes.USER_LOGIN_SUCCESS,
+        type: actionTypes.USER_LOGOUT_SUCCESS,
     }
 }
 export function userLogoutFailure(error) {
