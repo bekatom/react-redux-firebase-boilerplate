@@ -15,9 +15,15 @@ export default function* userAuthSagas(data) {
 export function* userFetchSagas() {
     try {
         const user = yield call(FireBaseTools.fetchUser)
-        yield put(fetchUserSuccess(user))
+        if (user !== null) {
+            console.log('not null', user)
+            yield put(fetchUserSuccess(user))
+        } else {
+            console.log('failure ', user)
+            yield put(fetchUserFailure())
+        }
     } catch (error) {
-        yield put(fetchUserFailure(error))
+        yield put(fetchUserFailure())
     }
 }
 

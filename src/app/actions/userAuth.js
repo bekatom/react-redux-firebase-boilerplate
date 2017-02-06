@@ -35,13 +35,11 @@ export function fetchUserSuccess(user) {
         payload: user,
     }
 }
-export function fetchUserFailure(error) {
+export function fetchUserFailure() {
     return {
-        type: actionTypes.USER_FETCH_SUCCESS,
-        error,
+        type: actionTypes.USER_FETCH_FAILURE,
     }
 }
-
 
 // LOGOUT user
 export function userLogoutRequest() {

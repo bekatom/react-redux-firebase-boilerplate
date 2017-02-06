@@ -25,7 +25,7 @@ export const userAuth = (state = initialState, action) => {
             isLoggedIn: true }
 
     case actionTypes.USER_FETCH_FAILURE:
-        return { error: action.error }
+        return { ...state, error: 'not authenticated' }
     // user login
     case actionTypes.USER_LOGIN_REQUEST:
         return { ...state }
@@ -37,7 +37,8 @@ export const userAuth = (state = initialState, action) => {
     case actionTypes.USER_LOGOUT_REQUEST:
         return { ...state }
     case actionTypes.USER_LOGOUT_SUCCESS:
-        return action.payload
+        // return action.payload
+        return { ...state }
     case actionTypes.USER_LOGOUT_FAILURE:
         return { error: action.error }
     default:

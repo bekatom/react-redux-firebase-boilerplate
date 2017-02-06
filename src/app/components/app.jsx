@@ -8,20 +8,19 @@ import { fetchUserRequest, userLogoutRequest } from '../actions/userAuth'
 
 class App extends Component {
 
-    // constructor(props) {
-    //     super(props)
+    constructor(props) {
+        super(props)
 
-    //    // this.props.startupRequest()
+       // this.props.startupRequest()
 
-    //     // this.props.fetchUser()
-    //     // this.logOut = this.logOut.bind(this)
-    // }
+        // this.props.fetchUser()
+        this.logOut = this.logOut.bind(this)
+    }
 
     componentDidMount() {
         this.props.startup()
         this.props.fetchUser()
     }
-
 
     logOut() {
         this.props.logoutUser()
@@ -33,7 +32,7 @@ class App extends Component {
     }
     renderUserMenu(currentUser) {
     // if current user exists and user id exists than make user navigation
-        if (currentUser && currentUser.uid) {
+        if (currentUser && currentUser.firebase.uid) {
             return (
                 <li className="dropdown">
                     <a
@@ -57,6 +56,8 @@ class App extends Component {
     }
 
     render() {
+       // const currentUser = this.props.currentUser
+      //  console.log('currentUser :', currentUser)
         return (
             <div>
                 <header className="navbar navbar-static-top navbar-inverse" id="top" role="banner">
@@ -101,6 +102,7 @@ App.propTypes = {
     startup: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
     logoutUser: PropTypes.func.isRequired,
+    // currentUser
 }
 
 
