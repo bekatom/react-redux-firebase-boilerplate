@@ -41,3 +41,22 @@ export function fetchUserFailure(error) {
         error,
     }
 }
+
+
+// LOGOUT user
+export function userLogoutRequest() {
+    return {
+        type: actionTypes.USER_LOGOUT_REQUEST,
+    }
+}
+export function userLogoutSuccess() {
+    return {
+        type: actionTypes.USER_LOGIN_SUCCESS,
+    }
+}
+export function userLogoutFailure(error) {
+    return {
+        type: actionTypes.USER_LOGIN_FAILURE,
+        error,
+    }
+}

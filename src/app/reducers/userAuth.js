@@ -26,6 +26,13 @@ export const userAuth = (state = initialState, action) => {
         return action.payload
     case actionTypes.USER_LOGIN_FAILURE:
         return { error: action.error }
+    // user logout
+    case actionTypes.USER_LOGOUT_REQUEST:
+        return { ...state }
+    case actionTypes.USER_LOGOUT_SUCCESS:
+        return action.payload
+    case actionTypes.USER_LOGOUT_FAILURE:
+        return { error: action.error }
     default:
         return state
     }
