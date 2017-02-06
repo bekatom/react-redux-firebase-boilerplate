@@ -20,7 +20,7 @@ class App extends Component {
 
     logOut() {
         this.props.logoutUser()
-        this.props.fetchUser()
+       // this.props.fetchUser()
     }
     renderUserMenu(currentUser) {
         // if current user exists and user id exists than make user navigation
