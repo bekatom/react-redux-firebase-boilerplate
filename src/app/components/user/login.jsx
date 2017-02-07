@@ -13,6 +13,11 @@ class UserLogin extends Component {
             message: '',
         }
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.currentUser.isLoggedIn) {
+            browserHistory.push('/profile')
+        }
+    }
 
     onFormSubmit(event) {
         event.preventDefault()
@@ -21,14 +26,6 @@ class UserLogin extends Component {
         const password = this.refs.password.value
 
         this.props.loginUser({ email, password })
-        // this.props.loginUser({ email, password }).then((data) => {
-        //     if (data.payload.errorCode) {
-        //         this.setState({ message: data.payload.errorMessage })
-        //     } else {
-        //         browserHistory.push('/profile')
-        //     }
-        // }
-      // )
     }
 
     loginWithProvider(provider) {
