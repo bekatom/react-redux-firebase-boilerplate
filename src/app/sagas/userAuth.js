@@ -5,11 +5,12 @@ import FireBaseTools from '../utils/firebase'
 
 export function* userAuthSagas(action) {
     try {
-        console.log('DATA : ', action.payload)
-        //   const userParams = action.payload
         const user = yield call(FireBaseTools.loginUser, action.payload)
-        // console.log('userAuthSagas', user)
-        yield put(userLoginSuccess(user))
+        if (user.errorMessage) {
+            yield put(userLoginFailure(user.errorMessage))
+        } else {
+            yield put(userLoginSuccess(user))
+        }
     } catch (error) {
         yield put(userLoginFailure(error))
     }

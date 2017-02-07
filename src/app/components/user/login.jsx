@@ -10,9 +10,6 @@ class UserLogin extends Component {
         super(props)
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.loginWithProvider = this.loginWithProvider.bind(this)
-        this.state = {
-            message: '',
-        }
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser.isLoggedIn) {
@@ -30,13 +27,13 @@ class UserLogin extends Component {
     }
 
     loginWithProvider(provider) {
-        this.props.loginWithProvider(provider).then((data) => {
-            if (data.payload.errorCode) {
-                this.setState({ message: data.payload.errorMessage })
-            } else {
-                browserHistory.push('/profile')
-            }
-        })
+        // this.props.loginWithProvider(provider).then((data) => {
+        //     if (data.payload.errorCode) {
+        //         this.setState({ message: data.payload.errorMessage })
+        //     } else {
+        //         browserHistory.push('/profile')
+        //     }
+        // })
     }
 
     render() {
@@ -44,7 +41,7 @@ class UserLogin extends Component {
             <div className="col-md-4">
                 <form id="frmLogin" role="form" onSubmit={this.onFormSubmit}>
                     <p>
-                        {this.state.message}
+                        {this.props.currentUser.error}
                     </p>
                     <h2>Login</h2>
                     <div className="form-group">
