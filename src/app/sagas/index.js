@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga'
 import { put, call, takeEvery, takeLatest, fork } from 'redux-saga/effects'
 import startup from './startupSagas'
-import { userAuthSagas, userFetchSagas, userLogout } from './userAuth'
+import { userAuthSagas, userFetchSagas, userLogout, userAuthWithProvider } from './userAuth'
 import * as actionTypes from '../actions/types'
 // import { startupRequest, startupSuccess, startupFailure } from '../actions/startup'
 
@@ -34,11 +34,10 @@ import * as actionTypes from '../actions/types'
 
 export default function* root() {
     yield [
-        // takeEvery('INCREMENT_ASYNC', incrementAsync),
         takeLatest(actionTypes.STARTUP_REQUEST, startup),
         takeLatest(actionTypes.USER_LOGIN_REQUEST, userAuthSagas),
+        takeLatest(actionTypes.USER_LOGIN_WITH_PROVIDER_REQUEST, userAuthWithProvider),
         takeLatest(actionTypes.USER_FETCH_REQUEST, userFetchSagas),
         takeLatest(actionTypes.USER_LOGOUT_REQUEST, userLogout),
-        // fork(testMethod),
     ]
 }

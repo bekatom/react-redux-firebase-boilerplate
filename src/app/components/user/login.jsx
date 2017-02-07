@@ -1,8 +1,10 @@
 /* eslint jsx-a11y/href-no-hash: 0 */
+/* eslint react/no-string-refs: 0 */
+
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
 import { connect } from 'react-redux'
-import { fetchUserRequest, userLoginRequest } from '../../actions/userAuth'
+import { fetchUserRequest, userLoginRequest, userLoginWithProviderRequest } from '../../actions/userAuth'
 
 class UserLogin extends Component {
 
@@ -27,6 +29,7 @@ class UserLogin extends Component {
     }
 
     loginWithProvider(provider) {
+        this.props.loginWithProvider(provider)
         // this.props.loginWithProvider(provider).then((data) => {
         //     if (data.payload.errorCode) {
         //         this.setState({ message: data.payload.errorMessage })
@@ -97,6 +100,7 @@ class UserLogin extends Component {
 
 UserLogin.propTypes = {
     loginUser: PropTypes.func.isRequired,
+    loginWithProvider: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -108,6 +112,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
     fetchUser: () => dispatch(fetchUserRequest()),
     loginUser: user => dispatch(userLoginRequest(user)),
+    loginWithProvider: provider => dispatch(userLoginWithProviderRequest(provider)),
 })
 
 
