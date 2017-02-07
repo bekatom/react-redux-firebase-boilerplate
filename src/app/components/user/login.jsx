@@ -19,7 +19,7 @@ class UserLogin extends Component {
 
     onFormSubmit(event) {
         event.preventDefault()
-
+        // TODO remove depricated "this."
         const email = this.refs.email.value
         const password = this.refs.password.value
 
