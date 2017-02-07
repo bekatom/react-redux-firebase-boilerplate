@@ -1,3 +1,4 @@
+/* eslint jsx-a11y/href-no-hash: 0 */
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
 import { connect } from 'react-redux'
@@ -96,18 +97,6 @@ class UserLogin extends Component {
     }
 
 }
-
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({
-//         loginUser,
-//         fetchUser,
-//         loginWithProvider,
-//     }, dispatch)
-// }
-
-// function mapStateToProps(state) {
-//     return { currentUser: state.currentUser }
-// }
 
 UserLogin.propTypes = {
     loginUser: PropTypes.func.isRequired,

@@ -1,3 +1,5 @@
+/* eslint jsx-a11y/href-no-hash: 0 */
+
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
@@ -15,10 +17,8 @@ class App extends Component {
         this.props.startup()
         this.props.fetchUser()
     }
-
     logOut() {
         this.props.logoutUser()
-       // this.props.fetchUser()
     }
     renderUserMenu(currentUser) {
         if (currentUser.isLoggedIn) {
@@ -45,8 +45,6 @@ class App extends Component {
     }
 
     render() {
-       // const currentUser = this.props.currentUser
-      //  console.log('currentUser :', currentUser)
         return (
             <div>
                 <header className="navbar navbar-static-top navbar-inverse" id="top" role="banner">
@@ -93,7 +91,6 @@ App.propTypes = {
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-        // startup: state.startup,
     }
 }
 
