@@ -39,6 +39,17 @@ export const userAuth = (state = initialState, action) => {
             isLoggedIn: true }
     case actionTypes.USER_LOGIN_FAILURE:
         return { error: action.error }
+    // auth with providers
+    case actionTypes.USER_LOGIN_WITH_PROVIDER_REQUEST:
+        return action.payload
+    case actionTypes.USER_LOGIN_WITH_PROVIDER_SUCCESS:
+        return { firebase: action.payload,
+            email: action.payload.email,
+            username: action.payload.displayName,
+            uid: action.payload.uid,
+            isLoggedIn: true }
+    case actionTypes.USER_LOGIN_WITH_PROVIDER_FAILURE:
+        return { error: action.error }
     // user logout
     case actionTypes.USER_LOGOUT_REQUEST:
         return { ...state }
