@@ -3,9 +3,11 @@ import { userLoginSuccess, userLoginFailure, fetchUserFailure,
     fetchUserSuccess, userLogoutSuccess, userLogoutFailure } from '../actions/userAuth'
 import FireBaseTools from '../utils/firebase'
 
-export default function* userAuthSagas(data) {
+export default function* userAuthSagas(action) {
     try {
-        const user = yield call(FireBaseTools.loginUser, data)
+        console.log('DATA : ', action)
+        const user = yield call(FireBaseTools.loginUser, action)
+        console.log('userAuthSagas', user)
         yield put(userLoginSuccess(user))
     } catch (error) {
         yield put(userLoginFailure(error))

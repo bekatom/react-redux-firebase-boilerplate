@@ -1,44 +1,45 @@
-import React, { Component } from 'react';
-import { browserHistory, Link } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { loginUser, fetchUser, loginWithProvider } from '../../actions/firebase_actions';
+import React, { Component, PropTypes } from 'react'
+import { browserHistory, Link } from 'react-router'
+import { connect } from 'react-redux'
+import { fetchUserRequest, userLoginRequest } from '../../actions/userAuth'
 
 
 class UserLogin extends Component {
 
     constructor(props) {
-        super(props);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.loginWithProvider = this.loginWithProvider.bind(this);
+        super(props)
+        this.onFormSubmit = this.onFormSubmit.bind(this)
+        this.loginWithProvider = this.loginWithProvider.bind(this)
         this.state = {
             message: '',
-        };
+        }
     }
 
     onFormSubmit(event) {
-        event.preventDefault();
+        event.preventDefault()
 
-        const email = this.refs.email.value;
-        const password = this.refs.password.value;
-        this.props.loginUser({ email, password }).then((data) => {
-            if (data.payload.errorCode) {
-                this.setState({ message: data.payload.errorMessage });
-            } else {
-                browserHistory.push('/profile');
-            }
-        }
-    );
+        const email = this.refs.email.value
+        const password = this.refs.password.value
+
+        this.props.loginUser(email, password)
+        // this.props.loginUser({ email, password }).then((data) => {
+        //     if (data.payload.errorCode) {
+        //         this.setState({ message: data.payload.errorMessage })
+        //     } else {
+        //         browserHistory.push('/profile')
+        //     }
+        // }
+      // )
     }
 
     loginWithProvider(provider) {
         this.props.loginWithProvider(provider).then((data) => {
             if (data.payload.errorCode) {
-                this.setState({ message: data.payload.errorMessage });
+                this.setState({ message: data.payload.errorMessage })
             } else {
-                browserHistory.push('/profile');
+                browserHistory.push('/profile')
             }
-        });
+        })
     }
 
     render() {
@@ -70,46 +71,62 @@ class UserLogin extends Component {
                     <h4>Login with</h4>
                     <a
                       href="#" className="btn btn-block btn-social btn-facebook" onClick={() => {
-                          this.loginWithProvider('facebook');
+                          this.loginWithProvider('facebook')
                       }} data-provider="facebook"
                     >Facebook</a>
 
                     <a
                       href="#" className="btn btn-block btn-social btn-twitter" onClick={() => {
-                          this.loginWithProvider('twitter');
+                          this.loginWithProvider('twitter')
                       }} data-provider="twitter"
                     >Twitter</a>
 
                     <a
                       href="#" className="btn btn-block btn-social btn-google" onClick={() => {
-                          this.loginWithProvider('google');
+                          this.loginWithProvider('google')
                       }} data-provider="twitter"
                     >Google</a>
 
                     <a
                       href="#" className="btn btn-block btn-social btn-github" onClick={() => {
-                          this.loginWithProvider('github');
+                          this.loginWithProvider('github')
                       }} data-provider="twitter"
                     >Github</a>
 
                 </form>
             </div>
 
-        );
+        )
     }
 
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        loginUser,
-        fetchUser,
-        loginWithProvider,
-    }, dispatch);
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({
+//         loginUser,
+//         fetchUser,
+//         loginWithProvider,
+//     }, dispatch)
+// }
+
+// function mapStateToProps(state) {
+//     return { currentUser: state.currentUser }
+// }
+
+UserLogin.propTypes = {
+    loginUser: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
-    return { currentUser: state.currentUser };
+    return {
+        currentUser: state.currentUser,
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
+const mapDispatchToProps = dispatch => ({
+    fetchUser: () => dispatch(fetchUserRequest()),
+    loginUser: user => dispatch(userLoginRequest(user)),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserLogin)

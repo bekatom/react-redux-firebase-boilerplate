@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-// import { logoutUser } from '../actions/firebase_actions'
 import { startupRequest } from '../actions/startup'
 import { fetchUserRequest, userLogoutRequest } from '../actions/userAuth'
 
@@ -86,15 +84,10 @@ class App extends Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({ fetchUser, logoutUser }, dispatch)
-// }
-
 App.propTypes = {
     startup: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
     logoutUser: PropTypes.func.isRequired,
-    // currentUser
 }
 
 
@@ -105,19 +98,9 @@ function mapStateToProps(state) {
     }
 }
 
-// const mapStateToProps = state =>
-//      ({
-//          data: state.vtcases.data,
-//          doc: state.vtcases.doc,
-//          isDBInit: isDatabaseInit(state.databaseInitialize),
-//      })
-// ;
-
 const mapDispatchToProps = dispatch => ({
     fetchUser: () => dispatch(fetchUserRequest()),
     logoutUser: () => dispatch(userLogoutRequest()),
-    // logoutUser,
-    // startup: () => startupRequest(),
     startup: () => dispatch(startupRequest()),
 })
 

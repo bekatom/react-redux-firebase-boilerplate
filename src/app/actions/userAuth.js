@@ -9,10 +9,10 @@ export function userLoginRequest(user) {
     }
 }
 
-export function userLoginSuccess(data) {
+export function userLoginSuccess(user) {
     return {
         type: actionTypes.USER_LOGIN_SUCCESS,
-        payload: data,
+        payload: user,
     }
 }
 
