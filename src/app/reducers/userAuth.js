@@ -8,6 +8,7 @@ const initialState = {
     email: null,
     error: null,
     isLoggedIn: false,
+    uid: null,
     firebase: {
 
     },
@@ -22,15 +23,20 @@ export const userAuth = (state = initialState, action) => {
         return { firebase: action.payload,
             email: action.payload.email,
             username: action.payload.displayName,
+            uid: action.payload.uid,
             isLoggedIn: true }
 
     case actionTypes.USER_FETCH_FAILURE:
         return { ...state, error: 'not authenticated' }
     // user login
     case actionTypes.USER_LOGIN_REQUEST:
-        return { ...state }
-    case actionTypes.USER_LOGIN_SUCCESS:
         return action.payload
+    case actionTypes.USER_LOGIN_SUCCESS:
+        return { firebase: action.payload,
+            email: action.payload.email,
+            username: action.payload.displayName,
+            uid: action.payload.uid,
+            isLoggedIn: true }
     case actionTypes.USER_LOGIN_FAILURE:
         return { error: action.error }
     // user logout

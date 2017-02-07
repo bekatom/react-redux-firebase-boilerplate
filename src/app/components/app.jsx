@@ -21,8 +21,7 @@ class App extends Component {
        // this.props.fetchUser()
     }
     renderUserMenu(currentUser) {
-        // if current user exists and user id exists than make user navigation
-        if (currentUser && currentUser.firebase.uid) {
+        if (currentUser.isLoggedIn) {
             return (
                 <li className="dropdown">
                     <a

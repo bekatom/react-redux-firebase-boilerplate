@@ -3,7 +3,6 @@ import { browserHistory, Link } from 'react-router'
 import { connect } from 'react-redux'
 import { fetchUserRequest, userLoginRequest } from '../../actions/userAuth'
 
-
 class UserLogin extends Component {
 
     constructor(props) {
@@ -21,7 +20,7 @@ class UserLogin extends Component {
         const email = this.refs.email.value
         const password = this.refs.password.value
 
-        this.props.loginUser(email, password)
+        this.props.loginUser({ email, password })
         // this.props.loginUser({ email, password }).then((data) => {
         //     if (data.payload.errorCode) {
         //         this.setState({ message: data.payload.errorMessage })
