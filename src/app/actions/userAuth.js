@@ -23,6 +23,29 @@ export function userLoginFailure(error) {
     }
 }
 
+// / AUTHENTICATION WITH PROVIDER
+export function userLoginWithProviderRequest(user) {
+    return {
+        type: actionTypes.USER_LOGIN_WITH_PROVIDER_REQUEST,
+        payload: user,
+    }
+}
+export function userLoginWithProviderSuccess(user) {
+    return {
+        type: actionTypes.USER_LOGIN_WITH_PROVIDER_SUCCESS,
+        payload: user,
+    }
+}
+
+export function userLoginWithProviderFailure(error) {
+    return {
+        type: actionTypes.USER_LOGIN_WITH_PROVIDER_SUCCESS,
+        error,
+    }
+}
+
+// // END OF AUTH WITH PROVIDER
+
 // / FETCH USER
 export function fetchUserRequest() {
     return {
@@ -58,3 +81,4 @@ export function userLogoutFailure(error) {
         error,
     }
 }
+

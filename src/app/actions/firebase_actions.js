@@ -27,21 +27,6 @@ export function registerUser(user) {
     }
 }
 
-export function loginUser(user) {
-    const request = FireBaseTools.loginUser(user)
-    return {
-        type: LOGIN_FIREBASE_USER,
-        payload: request,
-    }
-}
-
-export function fetchUser() {
-    const request = FireBaseTools.fetchUser()
-    return {
-        type: FETCH_FIREBASE_USER,
-        payload: request,
-    }
-}
 
 export function updateUser(user) {
     const request = FireBaseTools.updateUserProfile(user)
@@ -67,10 +52,3 @@ export function resetPasswordEmail(email) {
     }
 }
 
-export function logoutUser(user) {
-    const request = FireBaseTools.logoutUser(user)
-    return {
-        type: LOGOUT_FIREBASE_USER,
-        payload: request,
-    }
-}
