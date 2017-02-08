@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import { fetchUserRequest } from '../../actions/userAuth'
+import { fetchUserRequest, userUpdateRequest } from '../../actions/userAuth'
 import Loading from '../helpers/loading'
 import ChangePassword from './change_password'
 
@@ -77,6 +77,7 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
     fetchUser: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
 }
 
 
@@ -88,6 +89,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
     fetchUser: () => dispatch(fetchUserRequest()),
+    updateUser: data => dispatch(userUpdateRequest(data)),
 })
 
 // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
