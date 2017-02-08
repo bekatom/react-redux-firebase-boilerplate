@@ -7,7 +7,8 @@ import { Field, reduxForm } from 'redux-form'
 
 import { fetchUserRequest, userUpdateRequest } from '../../actions/userAuth'
 import Loading from '../helpers/loading'
-import ChangePassword from './change_password'
+import ChangePassword from './inner/change_password'
+import UserInfo from './inner/UserInfo'
 
 
 class UserProfile extends Component {
@@ -44,29 +45,9 @@ class UserProfile extends Component {
 
         return (
             <div className="col-md-6">
-                <form id="frmProfile" role="form" onSubmit={this.onFormSubmit}>
-                    <h2>User Profile Page</h2>
-                    <p> {currentUser.error} </p>
-                    <br />
-                    <div className="form-group">
-                        <label htmlFor="email">Email: {currentUser.email} </label>
-                        <input
-                          type="text" defaultValue={currentUser.email}
-                          className="form-control" id="email" value={currentUser.email}
-                          ref="email" placeholder="Email" name="email"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="displayName">Display name: </label>
-                        <input
-                          type="text" defaultValue={currentUser.username}
-                          className="form-control" ref="displayName" id="displayName"
-                          placeholder="Display name" value={currentUser.username}
-                          name="displayName"
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Update</button>
-                </form>
+                <h2>User Profile Page</h2>
+                <p> {currentUser.error} </p>
+                <UserInfo currentUser={currentUser} />
                 <ChangePassword />
             </div>
         )
@@ -92,12 +73,4 @@ const mapDispatchToProps = dispatch => ({
     updateUser: data => dispatch(userUpdateRequest(data)),
 })
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-UserProfile = reduxForm({ form: 'UserProfile' })(UserProfile)
-
-// You have to connect() to any reducers that you wish to connect to yourself
-UserProfile = connect(mapStateToProps, mapDispatchToProps)(UserProfile)
-
-export default UserProfile
-
-// export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
