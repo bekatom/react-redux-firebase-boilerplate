@@ -62,10 +62,10 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.22.0",
     "bootstrap-social": "^5.0.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.0",
-    "babel-polyfill": "^6.22.0",
     "express": "^4.14.0",
     "firebase": "^3.0.5",
     "font-awesome": "^4.6.3",
@@ -76,6 +76,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0-rc5",
     "redux": "^3.0.4",
+    "redux-form": "^6.5.0",
     "redux-logger": "^2.7.4",
     "redux-promise": "^0.5.3",
     "redux-saga": "^0.14.2",

@@ -82,3 +82,24 @@ export function userLogoutFailure(error) {
     }
 }
 
+
+// / UPDATE USER
+export function userUpdateRequest() {
+    return {
+        type: actionTypes.USER_UPDATE_REQUEST,
+    }
+}
+export function userUpdateSuccess(data) {
+    return {
+        type: actionTypes.USER_UPDATE_SUCCESS,
+        payload: data,
+    }
+}
+export function userUpdateFailure(error) {
+    return {
+        type: actionTypes.USER_UPDATE_FAILURE,
+        payload: error,
+    }
+}
+
+// / END OF UPDATe USER

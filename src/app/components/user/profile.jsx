@@ -3,9 +3,12 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+
 import { fetchUserRequest } from '../../actions/userAuth'
 import Loading from '../helpers/loading'
 import ChangePassword from './change_password'
+
 
 class UserProfile extends Component {
 
@@ -87,5 +90,12 @@ const mapDispatchToProps = dispatch => ({
     fetchUser: () => dispatch(fetchUserRequest()),
 })
 
+// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
+UserProfile = reduxForm({ form: 'UserProfile' })(UserProfile)
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
+// You have to connect() to any reducers that you wish to connect to yourself
+UserProfile = connect(mapStateToProps, mapDispatchToProps)(UserProfile)
+
+export default UserProfile
+
+// export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
