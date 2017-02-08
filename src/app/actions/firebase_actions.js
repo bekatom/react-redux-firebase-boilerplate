@@ -11,13 +11,13 @@ import {
 } from './types'
 
 
-export function loginWithProvider(provider) {
-    const request = FireBaseTools.loginWithProvider(provider)
-    return {
-        type: LOGIN_WITH_PROVIDER_FIREBASE,
-        payload: request,
-    }
-}
+// export function loginWithProvider(provider) {
+//     const request = FireBaseTools.loginWithProvider(provider)
+//     return {
+//         type: LOGIN_WITH_PROVIDER_FIREBASE,
+//         payload: request,
+//     }
+// }
 
 export function registerUser(user) {
     const request = FireBaseTools.registerUser(user)
@@ -28,13 +28,13 @@ export function registerUser(user) {
 }
 
 
-export function updateUser(user) {
-    const request = FireBaseTools.updateUserProfile(user)
-    return {
-        type: UPDATE_FIREBASE_USER,
-        payload: request,
-    }
-}
+// export function updateUser(user) {
+//     const request = FireBaseTools.updateUserProfile(user)
+//     return {
+//         type: UPDATE_FIREBASE_USER,
+//         payload: request,
+//     }
+// }
 
 export function changePassword(newPassword) {
     const request = FireBaseTools.changePassword(newPassword)

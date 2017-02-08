@@ -1,7 +1,9 @@
 import { put, call } from 'redux-saga/effects'
 import { userLoginSuccess, userLoginFailure, fetchUserFailure,
     fetchUserSuccess, userLogoutSuccess, userLogoutFailure,
-    userLoginWithProviderSuccess, userLoginWithProviderFailure } from '../actions/userAuth'
+    userLoginWithProviderSuccess, userLoginWithProviderFailure,
+    userUpdateSuccess, userUpdateFailure,
+ } from '../actions/userAuth'
 import FireBaseTools from '../utils/firebase'
 
 
@@ -19,7 +21,6 @@ export function* userAuthSagas(action) {
 }
 export function* userAuthWithProvider(action) {
     try {
-        console.log('userAuthWithProvider', action)
         const user = yield call(FireBaseTools.loginWithProvider, action.payload)
         if (user.errorMessage) {
             yield put(userLoginWithProviderFailure(user.errorMessage))
@@ -45,11 +46,20 @@ export function* userFetchSagas() {
 }
 
 export function* userLogout(user) {
-    console.log('user logout', user)
     try {
         const data = yield call(FireBaseTools.logoutUser, user)
         yield put(userLogoutSuccess(data))
     } catch (error) {
         yield put(userLogoutFailure(error))
+    }
+}
+
+export function* updateUserProfile(user) {
+    try {
+        const data = yield call(FireBaseTools.updateUserProfile, user)
+        console.log('updateUserProfile', data)
+        yield put(userUpdateSuccess(data))
+    } catch (error) {
+        yield put(userUpdateFailure(error))
     }
 }
