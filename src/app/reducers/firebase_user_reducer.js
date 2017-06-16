@@ -1,3 +1,4 @@
+import FireBaseTools from '../utils/firebase';
 import {
   LOGIN_WITH_PROVIDER_FIREBASE,
   REGISTER_FIREBASE_USER,
@@ -11,24 +12,66 @@ import {
 
 
 export default function (state = null, action) {
-    switch (action.type) {
-    case FETCH_FIREBASE_USER:
-        return action.payload;
-    case LOGOUT_FIREBASE_USER:
-        return action.payload;
-    case REGISTER_FIREBASE_USER:
-        return action.payload;
-    case LOGIN_FIREBASE_USER:
-        return action.payload;
-    case UPDATE_FIREBASE_USER:
-        return action.payload;
-    case CHANGE_FIREBASE_USER_PASSWORD:
-        return action.payload;
-    case FIREBASE_PASSWORD_RESET_EMAIL:
-        return action.payload;
-    case LOGIN_WITH_PROVIDER_FIREBASE:
-        return action.payload;
-    default:
-        return state;
-    }
+  switch (action.type) {
+    
+  case FETCH_FIREBASE_USER:
+    return loginWithProvider(action.provider);
+
+  case LOGOUT_FIREBASE_USER:
+    return logoutUser(action.user);
+
+  case REGISTER_FIREBASE_USER:
+    return registerUser(action.user);
+
+  case LOGIN_FIREBASE_USER:
+    return loginUser(action.user);
+
+  case UPDATE_FIREBASE_USER:
+    return updateUser(action.user);
+
+  case CHANGE_FIREBASE_USER_PASSWORD:
+    return changePassword(action.newPassword);
+
+  case FIREBASE_PASSWORD_RESET_EMAIL:
+    return resetPasswordEmail(action.email);
+
+  case LOGIN_WITH_PROVIDER_FIREBASE:
+    return loginWithProvider(action.provider);
+
+  default:
+    return state;
+
+  }
+}
+
+function loginWithProvider(provider) {
+  FireBaseTools.loginWithProvider(provider);
+}
+
+function registerUser(user) {
+  FireBaseTools.registerUser(user);
+}
+
+function loginUser(user) {
+  FireBaseTools.loginUser(user);
+}
+
+function fetchUser() {
+  FireBaseTools.fetchUser();
+}
+
+function updateUser(user) {
+  FireBaseTools.updateUserProfile(user);
+}
+
+function changePassword(newPassword) {
+  FireBaseTools.changePassword(newPassword);
+}
+
+function resetPasswordEmail(email) {
+  FireBaseTools.resetPasswordEmail(email);
+}
+
+function logoutUser(user) {
+  FireBaseTools.logoutUser(user);
 }
