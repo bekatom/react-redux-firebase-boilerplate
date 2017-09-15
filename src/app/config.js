@@ -2,12 +2,11 @@ module.exports = {
 
   // Change this to your firebase configuration! (Add Firebase to your web app)
     FIREBASE_CONFIG: {
-
-        apiKey: 'AIzaSyAAzWIkcMqyHueh1yQt84HdpMFfzL1OZYc',
-        authDomain: 'react-redux-firebase-d6283.firebaseapp.com',
-        databaseURL: 'https://react-redux-firebase-d6283.firebaseio.com',
-        storageBucket: 'react-redux-firebase-d6283.appspot.com',
-        messagingSenderId: '425723634684',
-
+      apiKey: "AIzaSyBgD4q3YujiPOOt4sPAfBHzBtG6xENp-TE",
+      authDomain: "adwebsite-928a9.firebaseapp.com",
+      databaseURL: "https://adwebsite-928a9.firebaseio.com",
+      projectId: "adwebsite-928a9",
+      storageBucket: "adwebsite-928a9.appspot.com",
+      messagingSenderId: "72060758788"
     },
 };
