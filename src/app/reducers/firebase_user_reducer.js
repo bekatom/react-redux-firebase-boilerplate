@@ -15,7 +15,7 @@ export default function (state = null, action) {
   switch (action.type) {
     
   case FETCH_FIREBASE_USER:
-    return loginWithProvider(action.provider);
+    return fetchUser();
 
   case LOGOUT_FIREBASE_USER:
     return logoutUser(action.user);
