@@ -1,4 +1,8 @@
+# THIS PROJECT IS DEPRECATED IT'S NOT MAINTAINED ANYMORE!
+
+
 # React, Redux Firebase Boilerplate
+
 
 [![Build Status](https://travis-ci.org/awwong1/react-redux-firebase-boilerplate.svg?branch=master)](https://travis-ci.org/awwong1/react-redux-firebase-boilerplate)
 
